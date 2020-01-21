@@ -85,6 +85,6 @@ The total population of the continent/region/country not living in cities (inclu
 
 ## Contributors:
 * Davide Pollicino     : 40401270
-* Simone Polizzi       : 40212394
+* Simone Piazzini      : 40212394
 * Magdalena Calkova     
 * Simona Georgieva 
