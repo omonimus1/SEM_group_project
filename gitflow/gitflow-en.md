@@ -1,5 +1,5 @@
 # Best git based work flow
-###### This document is based on the Gitworkflow-it.md createdby Giuseppe Matranga @mastrobirrario
+###### This document is based on the Gitworkflow-it.md created by Giuseppe Matranga @mastrobirrario
 
 This wiki exaplains the workflow and the development process based on the tolls of the Github platform. 
 
