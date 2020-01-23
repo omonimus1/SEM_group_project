@@ -9,7 +9,7 @@
 
 ## Goal of the SEM assessment 
 
-* Work in team using scrum methology
+* Work in team using scrum methodology
 * Apply modern software enginnering methods
 * Use Github, Zum and other DevOps tools (as Docker and IntelliJ)
 
