@@ -5,11 +5,20 @@
 - License [![LICENSE](https://img.shields.io/github/license/omonimus1/SEM_group_project.svg?style=flat-square)](https://github.com/omonimus1/SEM_group_project/blob/master/LICENSE)
 - Release [![Releases](https://img.shields.io/github/release/omonimus1/SEM_group_project/all.svg?style=flat-square)](https://github.com/omonimus1/SEM_group_project/releases)
 
+***
+
 ## Goal of the SEM assessment 
 
 * Work in team using scrum methology
 * Apply modern software enginnering methods
 * Use Github, Zum and other DevOps tools (as Docker and IntelliJ)
+
+***
+
+## Git workflow
+[GitWorkflow](gitflow/gitflow-en.md)
+
+***
 
 ## Assessment 
 
@@ -89,6 +98,8 @@ Finally, the organisation has asked if it is possible to provide the number of p
 * The total population of the continent/region/country.
 * The total population of the continent/region/country living in cities (including a %).
 * The total population of the continent/region/country not living in cities (including a %).
+
+***
 
 ### Contributors:
 
