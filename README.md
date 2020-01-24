@@ -108,3 +108,8 @@ Finally, the organisation has asked if it is possible to provide the number of p
 * Simone Piazzini      : 40212394   @axis93
 * Davide Pollicino     : 40401270   @omonimus1
 
+***
+
+### Marking sheet scheme
+
+(marking sheet)[MarkingSheet/Markingsheet.docx]
