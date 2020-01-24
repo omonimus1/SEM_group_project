@@ -1,6 +1,6 @@
-sudo: required
-
 language: java
+<<<<<<< HEAD
+=======
 
 services:
 - docker
@@ -11,3 +11,4 @@ after_success:
 - docker run -d --name mongo-dbserver --network se-methods mongo
 - docker build -t se_methods .
 - docker run --network se-methods se_methods
+>>>>>>> origin/master
