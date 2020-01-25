@@ -22,7 +22,7 @@
 
 ## Assessment 
 
-Having already a specific dataset (SQL dataabase), our task is to design and implement a new system that allow easy access to the population information (alread stored in the our database). 
+Having already a specific dataset (SQL data base), our task is to design and implement a new system that allow easy access to the population information (already stored in the our database). 
 
 The organisation with who are we working with has asked for the following reports to be generated:
 
@@ -101,9 +101,10 @@ Finally, the organisation has asked if it is possible to provide the number of p
 
 ***
 
-### Contributors:
-* Magdalena Calkova    : 40400974   @McPenquen
-* Simona Georgieva     : 40396837   @SimonaGeorgieva99
-* Simone Piazzini      : 40212394   @axis93
-* Davide Pollicino     : 40401270   @omonimus1
 
+
+***
+
+### Marking sheet scheme
+
+(marking sheet)[MarkingSheet/Markingsheet.docx]
