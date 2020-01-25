@@ -102,7 +102,10 @@ Finally, the organisation has asked if it is possible to provide the number of p
 ***
 
 ### Contributors:
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 * Magdalena Calkova    : 40400974   @McPenquen
 * Simona Georgieva     : 40396837   @SimonaGeorgieva99
 * Simone Piazzini      : 40212394   @axis93
