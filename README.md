@@ -104,7 +104,7 @@ Finally, the organisation has asked if it is possible to provide the number of p
 ### Contributors:
 
 * Magdalena Calkova    : 40400974   @McPenquen
-* Simona Georgieva     :            @SimonaGeorgieva99
+* Simona Georgieva     : 40396837   @SimonaGeorgieva99
 * Simone Piazzini      : 40212394   @axis93
 * Davide Pollicino     : 40401270   @omonimus1
 
