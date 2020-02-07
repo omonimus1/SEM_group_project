@@ -1,34 +1,28 @@
 package com.napier.sem;
 
+import java.sql.*;
 
-import com.mongodb.MongoClient;	import java.sql.*;
-import com.mongodb.client.MongoDatabase;	
-import com.mongodb.client.MongoCollection;	public class App {
-import org.bson.Document;	
+public class App {
 
+    public static void main(String[] args)
+    {
+        // Create new Application
+        App a = new App();
 
-public class App	
-{	
-    public static void main(String[] args)	    public static void main(String[] args)
-    {	    {
-        // Connect to MongoDB on local system - we're using port 27000	        // Create new Application
-        MongoClient mongoClient = new MongoClient("localhost", 27000);	        App a = new App();
-        // Get a database - will create when we use it	
-        MongoDatabase database = mongoClient.getDatabase("mydb");	        // Connect to database
-        // Get a collection from the database	        a.connect();
-        MongoCollection<Document> collection = database.getCollection("test");	
-        // Create a document to store	        // Disconnect from database
-        Document doc = new Document("name", "George Washington")	        a.disconnect();
-                .append("class", "Presidenting Methods")	    }
-                .append("year", "1789")	
-                .append("result", new Document("CW", 75).append("EX", 90));	    //Create a connection to MySQL database
-        // Add document to collection	    private Connection con = null;
-        collection.insertOne(doc);	
+        // Connect to database
+        a.connect();
+
+        // Disconnect from database
+        a.disconnect();
+    }
+
+    //Create a connection to MySQL database
+    private Connection con = null;
 
      //Connect to the MySQL database.
-        // Check document in collection	    public void connect() {
-        Document myDoc = collection.find().first();	        try {
-        System.out.println(myDoc.toJson());	            // Load Database driver
+    public void connect() {
+        try {
+            // Load Database driver
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             System.out.println("The SQL driver couldn't be loaded...");
@@ -65,5 +59,5 @@ public class App
                 System.out.println("ERORR: During closing of the connection to the database");
             }
         }
-    }	    }
-} 	} 
+    }
+}
