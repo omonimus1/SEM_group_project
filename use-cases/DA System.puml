@@ -1,0 +1,65 @@
+@startuml
+
+actor DA as "Data Analyst"
+
+
+
+rectangle Database
+
+rectangle "DA System" {
+ usecase UC1 as "Get Population
+ by field"
+ usecase UC2 as "Get top
+ populated countries
+  by field"
+ usecase UC3 as "Get population of
+ all cities"
+ usecase UC4 as "Get population
+ for specific
+ number of cities"
+ usecase UC5 as "Get Population
+ of capital cities"
+ usecase UC6 as "Get population
+ for specific number
+ of capital cities"
+ usecase UC7 as "Population of people"
+ usecase UC8 as "Overall Population"
+ usecase UC9 as "Languages spoken"
+
+    usecase UCa AS "Print report"
+
+
+   DA - UC1
+   DA - UC2
+   DA - UC3
+   DA - UC4
+   DA - UC5
+   DA - UC6
+   DA - UC7
+   DA - UC8
+   DA - UC9
+
+
+   UC1 ..> UCa : include
+   UC2 ..> UCa : include
+   UC3 ..> UCa : include
+   UC4 ..> UCa : include
+   UC5 ..> UCa : include
+   UC6 ..> UCa : include
+   UC7 ..> UCa : include
+   UC8 ..> UCa : include
+   UC9 ..> UCa : include
+
+   UC1 - Database
+   UC2 - Database
+   UC3 - Database
+   UC4 - Database
+   UC5 - Database
+   UC6 - Database
+   UC7 - Database
+   UC8 - Database
+   UC9 - Database
+
+}
+
+@enduml

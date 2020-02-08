@@ -1,4 +1,4 @@
-#USE CASE: 2 Produce a Report on the Salary of Employees of a Given Role
+#USE CASE: 2 Produce a Report on the top populated countries
 ##CHARACTERISTIC INFORMATION
 ###Goal in Context
 2. As a Data Analyst I want to receive reports on the population of a specific number of populated countries in the world, in a continent and in a region, provided by me, so that I can make a statistic for the movement of the population.
