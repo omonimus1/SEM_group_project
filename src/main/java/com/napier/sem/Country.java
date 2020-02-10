@@ -17,6 +17,6 @@ public class Country {
     private double GNPOld;
     private String localName;
     private String governmentForm;
-
+    private String headOfState;
 
 }
