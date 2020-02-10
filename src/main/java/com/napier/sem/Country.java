@@ -1,7 +1,7 @@
 package com.napier.sem;
 
 /**
- * Country Class that stores
+ * Country Class that stores information about an instance of a country
  */
 public class Country {
 
@@ -18,5 +18,8 @@ public class Country {
     private String localName;
     private String governmentForm;
     private String headOfState;
+    private City capital;
+    private String code2;
+    private CountryLanguage language;
 
 }
