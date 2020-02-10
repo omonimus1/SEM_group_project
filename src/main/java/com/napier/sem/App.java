@@ -1,15 +1,12 @@
 package com.napier.sem;
 
 import java.sql.*;
-
 /**
  * Authors: Davide Pollicino, Magdalena Calkova, Simona Georgieva, Simone Piazzini
  * COURSE: Software Engineering Methods (SET08103)
  * Last Modified: 10/02/2020
  * This application is designed for a company to retrieve information about countries related to their population, capital city, language etc.
  */
-
-
 public class App {
 
     public static void main(String[] args)
