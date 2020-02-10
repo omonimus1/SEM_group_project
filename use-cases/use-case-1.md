@@ -25,14 +25,15 @@ Data Analyst
 A request for statistics information is sent to the Data Analyst.
 
 ##MAIN SUCCESS SCENARIO
-1.Organisation request information for a given field - country, continent, regions.
-2.Data Analyst get the field to obtain information on the population.
+1.Organisation requests information for a given field - country, continent, regions.
+2.Data Analyst gets the field to obtain information on the population.
 3.Data Analyst extracts data of the population for the given field.
 4.Data Analyst provides report to the organisation.
 
 ##EXTENSIONS
 Field does not exist:
 Data analyst informs the organisation that a field has not been filled yet.
+
 SUB-VARIATIONS
 None.
 

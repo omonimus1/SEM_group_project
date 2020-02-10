@@ -1,7 +1,7 @@
-#USE CASE: 8 Produce a Report on the languages spoken.
+#USE CASE: 8 Information about languages spoken to be accessible.
 ##CHARACTERISTIC INFORMATION
 ###Goal in Context
-9. As a Data Analyst I want to be able to receive a report for the number of people who speak Spanish, English, Hindi, Arabic and Chinese in ascending order including the percentage of the world population so that I can make an analysis about the most spoken language.
+As a development team we would like  to provide the data analysts with information about the number of people who speak Spanish, English, Hindi, Arabic and Chinese in ascending order including the percentage of the world population so that it can be used for analysis about the most spoken language.
 
 ###Scope
 Organisation.
@@ -13,10 +13,10 @@ Primary task.
 We know the languages given by the organisation - Spanish, English, Hindi, Arabic, Chinese. The database contains the data about number of people speaking the given languages.
 
 ###Success End Condition
-A report is available for the Data Analyst.
+Info about languages spoken are accessible.
 
 ###Failed End Condition
-No report is produced.
+Info is not accessible.
 
 ###Primary Actor
 Data Analyst
@@ -30,7 +30,12 @@ A request for statistics information is sent to the Data Analyst.
 3.Data Analyst extracts data of number of people who speak the requested language including the percentage of the world population.
 4.Data Analyst provides report to the organisation.
 
+##EXTENSIONS
+Field does not exist:
+Data analyst informs the organisation that a field has not been filled yet.
 
+##SUB-VARIATIONS
+None.
 
 ##SCHEDULE
 DUE DATE: Release 3.0

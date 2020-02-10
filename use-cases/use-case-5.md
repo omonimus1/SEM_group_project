@@ -1,7 +1,7 @@
-#USE CASE: 5 Produce a Report on the capital cities in a given field.
+#USE CASE: 5 Generate a Report on the capital cities forg a given field.
 ##CHARACTERISTIC INFORMATION
 ###Goal in Context
-5. As a Data Analyst I want to receive reports on the population of the capital cities in the world, in a continent and in a region from the largest to the smallest so that I will use it on my research related to capital cities.
+5. As a Data Analyst I want to generate reports on the population of the capital cities in the world, in a continent and in a region from the largest to the smallest so that they will be used on a research related to capital cities.
 
 ###Scope
 Organisation.
@@ -30,6 +30,12 @@ A request for statistics information is sent to the Data Analyst.
 3.Data Analyst extracts data of the capital cities for the given field .
 4.Data Analyst provides report to the organisation.
 
+##EXTENSIONS
+Field does not exist:
+Data analyst informs the organisation that a field has not been filled yet.
+
+##SUB-VARIATIONS
+None.
 
 
 ##SCHEDULE

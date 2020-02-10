@@ -1,7 +1,7 @@
-#USE CASE: 8 Produce a Report on the population.
+#USE CASE: 8 Information about population to be accessible.
 ##CHARACTERISTIC INFORMATION
 ###Goal in Context
-8. As a Data Analyst team we would want to produce reports for the overall population of the world, of a continent, of a region, of a country, of a district and of a city so that we can provide it to organisations who deal with population researches and statistics.
+As a development team we would like to provide the following information for the overall population of the world, of a continent, of a region, of a country, of a district and of a city being accessible to the data analysts so that they can use the data for research and reports.
 
 ###Scope
 Organisation.
@@ -13,10 +13,10 @@ Primary task.
 We know the field given by organisation - world, continent, region, country, district, city. Database contains data about the population.
 
 ###Success End Condition
-A report is available for the Data Analyst.
+The info about population is accessible.
 
 ###Failed End Condition
-No report is produced.
+Information is not accessible
 
 ###Primary Actor
 Data Analyst
@@ -31,6 +31,11 @@ A request for statistics information is sent to the Data Analyst.
 4.Data Analyst provides report to the organisation.
 
 
+##EXTENSIONS
+Field does not exist:
+Data analyst informs the organisation that a field has not been filled yet.
 
+##SUB-VARIATIONS
+None.
 ##SCHEDULE
 DUE DATE: Release 3.0

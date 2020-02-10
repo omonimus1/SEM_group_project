@@ -1,7 +1,7 @@
 @startuml
 
 actor DA as "Data Analyst"
-
+actor DT as "Development team"
 
 
 rectangle Database
@@ -36,8 +36,8 @@ rectangle "DA System" {
    DA - UC5
    DA - UC6
    DA - UC7
-   DA - UC8
-   DA - UC9
+   DT - UC8
+   DT - UC9
 
 
    UC1 ..> UCa : include
@@ -47,8 +47,7 @@ rectangle "DA System" {
    UC5 ..> UCa : include
    UC6 ..> UCa : include
    UC7 ..> UCa : include
-   UC8 ..> UCa : include
-   UC9 ..> UCa : include
+
 
    UC1 - Database
    UC2 - Database
@@ -57,8 +56,7 @@ rectangle "DA System" {
    UC5 - Database
    UC6 - Database
    UC7 - Database
-   UC8 - Database
-   UC9 - Database
+
 
 }
 
