@@ -1,7 +1,7 @@
-#USE CASE: 2 Produce a Report on the top populated countries
+#USE CASE: 2 Generate a Report on the top populated countries
 ##CHARACTERISTIC INFORMATION
 ###Goal in Context
-2. As a Data Analyst I want to receive reports on the population of a specific number of populated countries in the world, in a continent and in a region, provided by me, so that I can make a statistic for the movement of the population.
+As a Data Analyst I want to generate reports on the population of a specific number of populated countries in the world, in a continent and in a region, provided by me, so that a statistic for the movement of the population can be made.
 
 ###Scope
 Organisation.
@@ -16,7 +16,7 @@ We know the number of top populated countries to be searched. Database contains 
 A report is available for the Data Analyst.
 
 ###Failed End Condition
-No report is produced.
+No report is generated.
 
 ###Primary Actor
 Data Analyst
@@ -30,7 +30,9 @@ A request for statistics information is sent to the Data Analyst.
 3.Data Analyst extracts data of the population for the given field and top countries.
 4.Data Analyst provides report to the organisation.
 
-
+##EXTENSIONS
+Field does not exist:
+Data analyst informs the organisation that a field has not been filled yet.
 
 ##SCHEDULE
 DUE DATE: Release 3.0

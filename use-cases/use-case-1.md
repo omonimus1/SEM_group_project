@@ -1,7 +1,7 @@
-#USE CASE: 1 Produce a Report on the Population of the countries in the world, continents and regions.
+#USE CASE: 1 Generate a Report on the Population of the countries in the world, continents and regions.
 ##CHARACTERISTIC INFORMATION
 ###Goal in Context
- As a Data Analyst I want to receive reports on the population of the countries in the world, in a continent and in a region from the largest to the smallest so that I can use it for my research.
+As a *Data Analyst* I want *to generate reports on the population of the countries in the world, in a continent and in a region from the largest to the smallest* so that *they can be used for research.*
 
 ###Scope
 Organisation.
@@ -16,7 +16,7 @@ We know the field. Database contains data on population of the countries in the 
 A report is available for a statistician to complete his research.
 
 ###Failed End Condition
-No report is produced.
+No report is generated.
 
 ###Primary Actor
 Data Analyst
@@ -34,7 +34,11 @@ A request for statistics information is sent to the Data Analyst.
 Field does not exist:
 Data analyst informs the organisation that a field has not been filled yet.
 
+<<<<<<< HEAD
 SUB-VARIATIONS
+=======
+##SUB-VARIATIONS
+>>>>>>> 4a1075c8409591a15c8ab5ea823a59d5bf641512
 None.
 
 ##SCHEDULE
