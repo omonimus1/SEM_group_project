@@ -2,6 +2,14 @@ package com.napier.sem;
 
 import java.sql.*;
 
+/**
+ * COURSE: Software Engineering Methods (SET08103)
+ * Last Modified: 10/02/2020
+ * Authors: Davide Pollicio, Magdalena Calkova, Simona Georgieva, Simone Piazzini
+ * Short Description: An application designed for a company to retrieve information about countries related to their population, capital city, language etc.
+ */
+
+
 public class App {
 
     public static void main(String[] args)
@@ -20,7 +28,7 @@ public class App {
     private Connection con = null;
 
      //Connect to the MySQL database.
-    public void connect() {
+    private void connect() {
         try {
             // Load Database driver
             Class.forName("com.mysql.jdbc.Driver");
@@ -50,7 +58,7 @@ public class App {
 
 
      //Disconnect from the MySQL database.
-    public void disconnect() {
+    private void disconnect() {
         if (con != null) {
             try {
                 // Close connection
