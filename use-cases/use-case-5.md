@@ -1,4 +1,4 @@
-#USE CASE: 5 Generate a Report on the capital cities forg a given field.
+#USE CASE: 5 Generate a Report on the capital cities for a given field.
 ##CHARACTERISTIC INFORMATION
 ###Goal in Context
 5. As a Data Analyst I want to generate reports on the population of the capital cities in the world, in a continent and in a region from the largest to the smallest so that they will be used on a research related to capital cities.
@@ -31,8 +31,8 @@ A request for statistics information is sent to the Data Analyst.
 4.Data Analyst provides report to the organisation.
 
 ##EXTENSIONS
-Field does not exist:
-Data analyst informs the organisation that a field has not been filled yet.
+Generate a report of specific number of cities:
+Data analyst performs a report for a specific number of cities.
 
 ##SUB-VARIATIONS
 None.

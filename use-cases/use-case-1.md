@@ -31,8 +31,8 @@ A request for statistics information is sent to the Data Analyst.
 4.Data Analyst provides report to the organisation.
 
 ##EXTENSIONS
-Field does not exist:
-Data analyst informs the organisation that a field has not been filled yet.
+Order top populated countries:
+Data analyst groups the top N populated countries in the given field.
 
 <<<<<<< HEAD
 SUB-VARIATIONS
