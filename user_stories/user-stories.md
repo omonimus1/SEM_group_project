@@ -1,8 +1,8 @@
 # User stories
 
-1. As a Data Analyst I want to generate reports on the countries in the world, in a continent and in a region organised by population from the largest to the smallest so that they can be used for research.
+1. As a Data Analyst I want to generate reports on the countries in the world, in a continent and in a region organised by population from the largest to the smallest so that the information can be used for research about population patterns.
 
-2. As a Data Analyst I want to generate reports on the top X populated countries, where X is a number specified by me, in the world, in a continent and in a region, so that the statistic can be used in a further research.
+2. As a Data Analyst I want to generate reports on the top X populated countries, where X is a number specified by me, in the world, in a continent and in a region, so that the statistic can be used in a further research about the top populated countries.
 
 3. As a Data Analyst I want to generate reports on the cities in the world, in a continent, in a region, in a country and in a district organised by population from the largest to the smallest so that information for the most populated cities can be provided.
 
