@@ -8,19 +8,25 @@ actor DT as "Development team"
 rectangle Database
 
 rectangle "DA System" {
- usecase UC1 as "Retrieve Population
+ usecase UC1 as "Generate report
+  on Population
  by field"
- usecase UC2 as "Retrieve top
+ usecase UC2 as "Generate report
+  for top
  populated countries
   by field"
- usecase UC3 as "Retrieve population of
+ usecase UC3 as "Generate report
+  on population of
  all cities"
- usecase UC4 as "Retrieve population
+ usecase UC4 as "Generate report
+                   on  population
  for specific
  number of cities"
- usecase UC5 as "Retrieve Population
+ usecase UC5 as "Generate report
+                   on  Population
  of capital cities"
- usecase UC6 as "Retrieve population
+ usecase UC6 as "Generate report
+                   on  population
  for specific number
  of capital cities"
  usecase UC7 as "Retrieve info about
@@ -32,7 +38,8 @@ rectangle "DA System" {
  to data about
  languages spoken"
 
-    usecase UCa AS "Generate report"
+
+
 
 
    DA - UC1
