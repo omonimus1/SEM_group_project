@@ -37,4 +37,4 @@ Data analyst performs a report for a specific number of cities.
 None.
 
 ###SCHEDULE
-DUE DATE: Release 2.0
+DUE DATE: Release v0.1-alpha-3
