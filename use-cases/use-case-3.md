@@ -37,4 +37,4 @@ Data analyst orders the top N populated cities in the new report.
 None
 
 ###SCHEDULE
-DUE DATE: Release 2.0
+DUE DATE: Release v0.1-alpha-3

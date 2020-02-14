@@ -37,4 +37,4 @@ Data analyst groups the top N populated countries in the given field.
 None
 
 ###SCHEDULE
-DUE DATE: Release 2.0
+DUE DATE: Release v0.1-alpha-3
