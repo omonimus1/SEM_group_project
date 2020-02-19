@@ -1,6 +1,9 @@
 package com.napier.sem;
 
+import org.graalvm.compiler.asm.amd64.AMD64Assembler;
+
 import java.sql.*;
+import java.util.ArrayList;
 
 /*
  * Authors: Davide Pollicino, Magdalena Calkova, Simona Georgieva, Simone Piazzini
@@ -16,8 +19,23 @@ public class App {
         // Create new Application
         App a = new App();
 
+        Country c = new Country();
+
         // Connect to database
         a.connect();
+
+        // Create List of Cities
+        ArrayList<City> cityList = new ArrayList<City>();
+
+
+        // Fot test purpose, make sure that the SQL actually works
+        // Create List of Country
+        ArrayList<Country> countryArrayList = c.getAllCountriesByLargestToSmallestPopulation();
+        // Shold be > 0 to se that actually thee queries works
+        System.out.println(countryArrayList.size());
+
+        // Create List of CountryLanguages
+        ArrayList<CountryLanguage> countryLanguages = new ArrayList<CountryLanguage>();
 
         // Disconnect from database
         a.disconnect();
