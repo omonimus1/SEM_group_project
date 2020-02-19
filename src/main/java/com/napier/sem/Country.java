@@ -56,10 +56,23 @@ public class Country {
             System.out.println("Failed to get country Names list");
             return null;
         }
-
     }
-    1)All the countries in the world organised by largest population to smallest.
-    SELECT Name
-    FROM country
-    ORDER BY Population DESC;
+
+    /**
+     * Prints a list of Countries with the
+     * @param employees The list of employees to print.
+     */
+    public void printCountries1(ArrayList<Country> countries)
+    {
+        // Print header
+        System.out.println(String.format("%-10s %-15s %-20s %-8s", "Emp No", "First Name", "Last Name", "Salary"));
+        // Loop over all employees in the list
+        for (Country emp : coun)
+        {
+            String emp_string =
+                    String.format("%-10s ",
+                            Name);
+            System.out.println(emp_string);
+        }
+    }
 }

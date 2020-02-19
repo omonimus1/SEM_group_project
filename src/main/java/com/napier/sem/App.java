@@ -35,8 +35,8 @@ public class App {
         System.out.println(countryArrayList.size());
 
         // Create List of CountryLanguages
-        ArrayList<CountryLanguage> countryLanguages = new ArrayList<CountryLanguage>();
-
+//        ArrayList<CountryLanguage> countryLanguages = new ArrayList<CountryLanguage>();
+        c.printCountries1(countryArrayList);
         // Disconnect from database
         a.disconnect();
     }
