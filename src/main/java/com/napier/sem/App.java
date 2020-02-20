@@ -20,6 +20,11 @@ public class App {
         // Connect to database
         a.connect();
 
+        //get all capital cities by population
+        ArrayList<City> allCapCities = new ArrayList<City>();
+       allCapCities = a.getAllCapitalCitiesByPopulation();
+       a.printCapitalCities(allCapCities);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -28,7 +33,7 @@ public class App {
     private Connection con = null;
 
     //Connect to the MySQL database.
-    public void connect() {
+    private void connect() {
         try {
             // Load Database driver
             Class.forName("com.mysql.jdbc.Driver");
@@ -56,9 +61,8 @@ public class App {
         }
     }
 
-
     //Disconnect from the MySQL database.
-    public void disconnect() {
+    private void disconnect() {
         if (con != null) {
             try {
                 // Close connection
@@ -66,6 +70,65 @@ public class App {
             } catch (Exception e) {
                 System.out.println("ERORR: During closing of the connection to the database");
             }
+        }
+    }
+
+    /**
+     * Gets all the current Countries in the word and its population
+     * @return A list of all all countries and population, sorted by the Country with
+     * the Highest Population to the smallest, or null if there is an error.
+     */
+    private ArrayList<City> getAllCapitalCitiesByPopulation()
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT city.Name, country.Name, city.Population "
+                    + "FROM city JOIN country ON (city.CountryCode=country.Code) "
+                    + "WHERE country.Capital = city.ID "
+                    + "ORDER BY city.Population DESC;";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<City> capCityList = new ArrayList<City>();
+            while(rset.next())
+            {
+                City cap = new City();
+                cap.setName(rset.getString("city.Name"));
+                cap.setCountry(rset.getString("country.Name"));
+                cap.setPopulation(rset.getInt("city.Population"));
+                capCityList.add(cap);
+            }
+            return capCityList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get list of all capital cities by population");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of capital cities
+     * @param capCities The list of capital cities to print
+     */
+    private void printCapitalCities(ArrayList<City> capCities)
+    {
+        // Print header for the capital cities
+        System.out.println(String.format("%-30s %-50s %-8s", "Name", "Country", "Population"));
+
+        // Loop over all capital cities in the list
+        for (City capCity : capCities)
+        {
+            String capCity_string =
+                    String.format("%-30s %-50s %-8s",
+                            capCity.getName(), capCity.getCountry(), capCity.getPopulation());
+            System.out.println(capCity_string);
         }
     }
 
