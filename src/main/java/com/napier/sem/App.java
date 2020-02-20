@@ -1,12 +1,15 @@
 package com.napier.sem;
 
 import java.sql.*;
-/**
+import java.util.ArrayList;
+
+/*
  * Authors: Davide Pollicino, Magdalena Calkova, Simona Georgieva, Simone Piazzini
  * COURSE: Software Engineering Methods (SET08103)
  * Last Modified: 10/02/2020
  * This application is designed for a company to retrieve information about countries related to their population, capital city, language etc.
  */
+
 public class App {
 
     public static void main(String[] args)
@@ -24,8 +27,8 @@ public class App {
     //Create a connection to MySQL database
     private Connection con = null;
 
-     //Connect to the MySQL database.
-    private void connect() {
+    //Connect to the MySQL database.
+    public void connect() {
         try {
             // Load Database driver
             Class.forName("com.mysql.jdbc.Driver");
@@ -54,8 +57,8 @@ public class App {
     }
 
 
-     //Disconnect from the MySQL database.
-    private void disconnect() {
+    //Disconnect from the MySQL database.
+    public void disconnect() {
         if (con != null) {
             try {
                 // Close connection
@@ -65,4 +68,5 @@ public class App {
             }
         }
     }
+
 }
