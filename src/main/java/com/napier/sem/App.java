@@ -1,7 +1,5 @@
 package com.napier.sem;
 
-import org.graalvm.compiler.asm.amd64.AMD64Assembler;
-
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -19,24 +17,19 @@ public class App {
         // Create new Application
         App a = new App();
 
-        Country c = new Country();
-
         // Connect to database
         a.connect();
 
-        // Create List of Cities
-        ArrayList<City> cityList = new ArrayList<City>();
-
-
         // Fot test purpose, make sure that the SQL actually works
         // Create List of Country
-        ArrayList<Country> countryArrayList = c.getAllCountriesByLargestToSmallestPopulation();
-        // Shold be > 0 to se that actually thee queries works
+        ArrayList<Country> countryArrayList = a.getAllCountriesByLargestToSmallestPopulation();
+
+        // Should be > 0 to se that actually thee queries works
         System.out.println(countryArrayList.size());
 
-        // Create List of CountryLanguages
-//        ArrayList<CountryLanguage> countryLanguages = new ArrayList<CountryLanguage>();
-        c.printCountries1(countryArrayList);
+        //Print countries
+        a.printCountries1(countryArrayList);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -85,4 +78,64 @@ public class App {
             }
         }
     }
+
+    /**
+     * Gets all the current Countries in the word and its population
+     * @return A list of all all countries and population, sorted by the Country with
+     * the Highest Population to the smallest, or null if there is an error.
+     */
+    public ArrayList<Country> getAllCountriesByLargestToSmallestPopulation()
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT country.Code , country.Name, country.Continent, country.Population "
+                    + "FROM country "
+                    + "ORDER BY Population DESC;";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract Countries information
+            ArrayList<Country> countryArrayList = new ArrayList<Country>();
+            while(rset.next())
+            {
+                Country ctr = new Country();
+                ctr.setCode(rset.getString("country.Code"));
+                ctr.setName(rset.getString("country.Name"));
+                ctr.setContinent(rset.getString("country.Continent"));
+                ctr.setPopulation(rset.getInt("country.Population"));
+                countryArrayList.add(ctr);
+            }
+            return countryArrayList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country list");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of Countries with the
+     * @param countries The list of employees to print.
+     */
+    public void printCountries1(ArrayList<Country> countries)
+    {
+        // Print header
+        System.out.println(String.format("%-10s %-50s %-20s %-8s", "Code", "Name", "Continent", "Population"));
+        // Loop over all employees in the list
+        for (Country ctr : countries)
+        {
+            String ctr_string =
+                    String.format("%-10s %-50s %-20s %-8s",
+                            ctr.getCode(), ctr.getName(), ctr.getContinent(), ctr.getPopulation());
+            System.out.println(ctr_string);
+        }
+    }
+
 }
+
