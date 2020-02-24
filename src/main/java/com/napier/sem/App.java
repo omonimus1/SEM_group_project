@@ -3,7 +3,7 @@ package com.napier.sem;
 import java.sql.*;
 import java.util.ArrayList;
 
-/*
+/**
  * Authors: Davide Pollicino, Magdalena Calkova, Simona Georgieva, Simone Piazzini
  * COURSE: Software Engineering Methods (SET08103)
  * Last Modified: 10/02/2020
@@ -21,18 +21,22 @@ public class App {
         a.connect();
 
         //get all capital cities by population
-        ArrayList<City> allCapCities = new ArrayList<City>();
-       allCapCities = a.getCapitalCitiesByPopulationInRegion("Caribbean");
-       a.printCapitalCities(allCapCities);
+        ArrayList<City>
+        allCapCities = a.getCapitalCitiesByPopulationInRegion("Caribbean");
+        a.printCapitalCities(allCapCities);
 
         // Disconnect from database
         a.disconnect();
+
+
+
     }
 
-    //Create a connection to MySQL database
+    /** con: Instance of the Connection object*/
     private Connection con = null;
 
-    //Connect to the MySQL database.
+    /** Connect(): Open the connection with the SQL Database
+      */
     private void connect() {
         try {
             // Load Database driver
@@ -47,7 +51,7 @@ public class App {
             System.out.println("Connecting to database...");
             try {
                 // Wait a bit for db to start
-                Thread.sleep(30000);
+                Thread.sleep(3000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Connection was a success!");
@@ -61,6 +65,9 @@ public class App {
         }
     }
 
+    /**
+     * disconnect():  Close the connection to the SQL Databse
+     * */
     //Disconnect from the MySQL database.
     private void disconnect() {
         if (con != null) {
@@ -153,6 +160,7 @@ public class App {
         }
     }
 
+
     /**
      * Gets all capital cities in the specified region
      * @param region string name of the region
@@ -194,9 +202,10 @@ public class App {
         }
     }
 
+
     /**
      * Prints a list of capital cities
-     * @param capCities The list of capital cities to print
+     * @paramt capCities The list of capital cities to print
      */
     private void printCapitalCities(ArrayList<City> capCities)
     {
