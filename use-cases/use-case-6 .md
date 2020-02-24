@@ -1,8 +1,7 @@
-#USE CASE: 6 Produce a Report on the specific number of capital cities.
+#USE CASE: 6 Generate a Report on the Specific Number of Capital Cities with the largest Population.
 ##CHARACTERISTIC INFORMATION
 ###Goal in Context
-6. As a Data Analyst I want to receive reports on the population of a specific number of capital cities in the world, in a continent and in a region, provided by me, so that I can make a statistical report for the most populated capital city.
-
+As a *Data Analyst* I want to *generate reports on the top X populated capital cities in the world, in a continent and in a region, where X is a number provided by me*, so that *a statistical report for the most populated capital city can be made*.
 ###Scope
 Organisation.
 
@@ -16,7 +15,7 @@ We know the field we are searching into - world, continent, region. Database con
 A report is available for the Data Analyst.
 
 ###Failed End Condition
-No report is produced.
+No report is generated.
 
 ###Primary Actor
 Data Analyst
@@ -24,13 +23,18 @@ Data Analyst
 ###Trigger
 A request for statistics information is sent to the Data Analyst.
 
-##MAIN SUCCESS SCENARIO
+###MAIN SUCCESS SCENARIO
 1.Organisation request information about the population of capital cities.
 2.Data Analyst searches into each field given by the organisation.
 3.Data Analyst extracts data of the top N populated capital cities for the given field .
 4.Data Analyst provides report to the organisation.
 
+###EXTENSIONS
+Field does not exist:
+Data analyst informs the organisation that a field has not been filled yet.
 
+###SUB-VARIATIONS
+None.
 
-##SCHEDULE
-DUE DATE: Release 3.0
+###SCHEDULE
+DUE DATE: Release v0.1-alpha-3

@@ -2,31 +2,44 @@
 
 actor DA as "Data Analyst"
 
+actor DT as "Development team"
 
 
 rectangle Database
 
 rectangle "DA System" {
- usecase UC1 as "Get Population
+ usecase UC1 as "Generate report
+  on Population
  by field"
- usecase UC2 as "Get top
+ usecase UC2 as "Generate report
+  for top
  populated countries
   by field"
- usecase UC3 as "Get population of
+ usecase UC3 as "Generate report
+  on population of
  all cities"
- usecase UC4 as "Get population
+ usecase UC4 as "Generate report
+                   on  population
  for specific
  number of cities"
- usecase UC5 as "Get Population
+ usecase UC5 as "Generate report
+                   on  Population
  of capital cities"
- usecase UC6 as "Get population
+ usecase UC6 as "Generate report
+                   on  population
  for specific number
  of capital cities"
- usecase UC7 as "Population of people"
- usecase UC8 as "Overall Population"
- usecase UC9 as "Languages spoken"
+ usecase UC7 as "Retrieve info about
+ population"
+ usecase UC8 as "Make access
+ to overall
+ population info"
+ usecase UC9 as "Make access
+ to data about
+ languages spoken"
 
-    usecase UCa AS "Print report"
+
+
 
 
    DA - UC1
@@ -36,29 +49,27 @@ rectangle "DA System" {
    DA - UC5
    DA - UC6
    DA - UC7
-   DA - UC8
-   DA - UC9
+   DT - UC8
+   DT - UC9
 
 
-   UC1 ..> UCa : include
-   UC2 ..> UCa : include
-   UC3 ..> UCa : include
-   UC4 ..> UCa : include
-   UC5 ..> UCa : include
-   UC6 ..> UCa : include
-   UC7 ..> UCa : include
-   UC8 ..> UCa : include
-   UC9 ..> UCa : include
+   UC2 ..> UC1 : extend
+
+   UC4 ..>UC3 : extend
+
+   UC6 ..> UC5 : extend
+
+
 
    UC1 - Database
-   UC2 - Database
+
    UC3 - Database
    UC4 - Database
    UC5 - Database
    UC6 - Database
    UC7 - Database
-   UC8 - Database
-   UC9 - Database
+
+
 
 }
 

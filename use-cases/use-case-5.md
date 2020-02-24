@@ -1,8 +1,7 @@
-#USE CASE: 5 Produce a Report on the capital cities in a given field.
+#USE CASE: 5 Generate a Report on the Capital Cities based on their Population
 ##CHARACTERISTIC INFORMATION
 ###Goal in Context
-5. As a Data Analyst I want to receive reports on the population of the capital cities in the world, in a continent and in a region from the largest to the smallest so that I will use it on my research related to capital cities.
-
+As a *Data Analyst* I want to *generate reports on the capital cities in the world, in a continent and in a region organised by the population from the largest to the smallest* so that *they will be used on a research related to capital cities*.
 ###Scope
 Organisation.
 
@@ -24,13 +23,18 @@ Data Analyst
 ###Trigger
 A request for statistics information is sent to the Data Analyst.
 
-##MAIN SUCCESS SCENARIO
+###MAIN SUCCESS SCENARIO
 1.Organisation request information about capital cities.
 2.Data Analyst searches into each field given by the organisation.
 3.Data Analyst extracts data of the capital cities for the given field .
 4.Data Analyst provides report to the organisation.
 
+###EXTENSIONS
+Generate a report of specific number of cities:
+Data analyst performs a report for a specific number of cities.
 
+###SUB-VARIATIONS
+None.
 
-##SCHEDULE
-DUE DATE: Release 3.0
+###SCHEDULE
+DUE DATE: Release v0.1-alpha-3
