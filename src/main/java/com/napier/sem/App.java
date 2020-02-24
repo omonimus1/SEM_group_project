@@ -27,15 +27,8 @@ public class App {
         // Connect to database
         a.connect();
 
-        //get all capital cities by population
-        ArrayList<City>
-        allCapCities = a.getCapitalCitiesByPopulationInRegion("Caribbean");
-        a.printCapitalCities(allCapCities);
-
         // Disconnect from database
         a.disconnect();
-
-
 
     }
 
@@ -87,6 +80,7 @@ public class App {
         }
     }
 
+
     /**
      * Gets all the capital cities in teh world ordered by population from the largest
      * @return A list of all capital cities with their country and population
@@ -122,6 +116,43 @@ public class App {
         {
             System.out.println(e.getMessage());
             System.out.println("Failed to get list of all capital cities by population");
+            return null;
+        }
+    }
+
+    /**
+     * Gets x capital cities in teh world ordered by population from the largest, where x is specified by the user
+     * @param amount The number of capital cities to produce
+     * @return A list of x amount of capital cities with their country and population
+     */
+    private ArrayList<City> getTopCapitalCitiesByPopulation(int amount) {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT city.Name, country.Name, city.Population "
+                    + "FROM city JOIN country ON (city.CountryCode=country.Code) "
+                    + "WHERE country.Capital = city.ID "
+                    + "ORDER BY city.Population DESC "
+                    + "LIMIT " + amount + " ;";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<City> capCityList = new ArrayList<City>();
+            while (rset.next()) {
+                City cap = new City();
+                cap.setName(rset.getString("city.Name"));
+                cap.setCountry(rset.getString("country.Name"));
+                cap.setPopulation(rset.getInt("city.Population"));
+                capCityList.add(cap);
+            }
+            return capCityList;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get list of " + amount + " capital cities by population");
             return null;
         }
     }
@@ -167,6 +198,48 @@ public class App {
         }
     }
 
+    /**
+     * Gets x capital cities in the specified continent, where x is provided by the user
+     * @param continent The string name of the continent
+     * @param amount The number of capital cities to produce
+     * @return A list of x amount of capital cities in the continent
+     */
+    private ArrayList<City> getCapitalCitiesByPopulationInContinent(String continent, int amount)
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT city.Name, country.Name, city.Population "
+                    + "FROM city JOIN country ON (city.CountryCode=country.Code) "
+                    + "WHERE country.Capital = city.ID "
+                    + "AND country.Continent = '" + continent
+                    + "' ORDER BY city.Population DESC "
+                    + "LIMIT " + amount + ";";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<City> capCityList = new ArrayList<City>();
+            while(rset.next())
+            {
+                City cap = new City();
+                cap.setName(rset.getString("city.Name"));
+                cap.setCountry(rset.getString("country.Name"));
+                cap.setPopulation(rset.getInt("city.Population"));
+                capCityList.add(cap);
+            }
+            return capCityList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get list of "+ amount +" capital cities by population in the continent");
+            return null;
+        }
+    }
 
     /**
      * Gets all capital cities in the specified region
@@ -209,6 +282,48 @@ public class App {
         }
     }
 
+    /**
+     * Gets x capital cities in the specified region, where x is provided by the user
+     * @param region The string name of the region
+     * @param amount The number of capital cities to produce
+     * @return A list of all capital cities in the region
+     */
+    private ArrayList<City> getCapitalCitiesByPopulationInRegion(String region, int amount)
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT city.Name, country.Name, city.Population "
+                    + "FROM city JOIN country ON (city.CountryCode=country.Code) "
+                    + "WHERE country.Capital = city.ID "
+                    + "AND country.Region = '" + region
+                    + "' ORDER BY city.Population DESC "
+                    + "LIMIT " + amount + ";";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<City> capCityList = new ArrayList<City>();
+            while(rset.next())
+            {
+                City cap = new City();
+                cap.setName(rset.getString("city.Name"));
+                cap.setCountry(rset.getString("country.Name"));
+                cap.setPopulation(rset.getInt("city.Population"));
+                capCityList.add(cap);
+            }
+            return capCityList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get list of  "+ amount +" capital cities by population in the region");
+            return null;
+        }
+    }
 
     /**
      * Prints a list of capital cities
@@ -228,5 +343,4 @@ public class App {
             System.out.println(capCity_string);
         }
     }
-
 }
