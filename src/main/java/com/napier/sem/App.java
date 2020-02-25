@@ -23,15 +23,17 @@ public class App {
     {
         // Create new Application
         App a = new App();
+        City c = new City();
 
         // Connect to database
         a.connect();
 
         //get all capital cities by population
-        ArrayList<City>
-        allCapCities = a.getCapitalCitiesByPopulationInRegion("Caribbean");
-        a.printCapitalCities(allCapCities);
+        //ArrayList<City> allCapCities = a.getCapitalCitiesByPopulationInRegion("Caribbean");
+        //a.printCapitalCities(allCapCities);
 
+        ArrayList<Country> countryArrayList =  a.getPopulationLivingInCitiesInEachContinent();
+        a.printPopulationLivingInCitiesByContinent(countryArrayList);
         // Disconnect from database
         a.disconnect();
 
@@ -229,4 +231,57 @@ public class App {
         }
     }
 
+
+/*
+    The population of people, people living in cities, and people not living in cities in each continent.
+        public
+    The population of people, people living in cities, and people not living in cities in each region.
+    The population of people, people living in cities, and people not living in cities in each country.
+*/
+
+    private ArrayList<Country> getPopulationLivingInCitiesInEachContinent()
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String populationLivingInCitiesQuery = "SELECT Continent, SUM(city.Population) AS 'Population in Cities'" +
+                    " FROM city JOIN country ON city.CountryCode = country.Code  " +
+                    "GROUP BY Continent;  ";// Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(populationLivingInCitiesQuery);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<Country> countryArrayList = new ArrayList<Country>();
+            while(rset.next())
+            {
+                Country cap = new Country();
+                cap.setContinent(rset.getString("country.Continent"));
+                cap.setPopulation(rset.getInt("city.Population"));
+                countryArrayList.add(cap);
+            }
+            return countryArrayList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Error while getting the Populations of people living in the city");
+            return null;
+        }
+    }
+
+    private void printPopulationLivingInCitiesByContinent(ArrayList<Country> listCountries)
+    {
+        // Print header for the capital cities
+        System.out.println(String.format("%-60s %-50s", "Continent", "Population"));
+
+        // Loop over all capital cities in the list
+        for (Country it : listCountries)
+        {
+            String capCity_string =
+                    String.format("%-60s %-50s",
+                            it.getContinent(), it.getPopulation());
+            System.out.println(capCity_string);
+        }
+    }
 }

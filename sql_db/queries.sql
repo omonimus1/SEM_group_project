@@ -88,7 +88,7 @@ GROUP BY Continent;
 19)All the capital cities in a region organised by largest to smallest.
 
 20)The top N populated capital cities in the world where N is provided by the user.
-/*Supposing that N in this case is 5*/
+/*Supposing that N in this case is 5*/S
 SELECT city.Name 
 FROM city
 JOIN country ON city.ID = country.Capital
@@ -103,6 +103,7 @@ LIMIT 5;
 
 22)The top N populated capital cities in a region where N is provided by the user.
 /*Supposing that N in this case is 5*/
+
 23)The population of people, people living in cities, and people not living in cities in each continent.
 24)The population of people, people living in cities, and people not living in cities in each region.
 25)The population of people, people living in cities, and people not living in cities in each country.
