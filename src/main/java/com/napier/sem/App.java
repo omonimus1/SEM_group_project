@@ -6,14 +6,7 @@ import java.util.ArrayList;
 /**
  * Authors: Davide Pollicino, Magdalena Calkova, Simona Georgieva, Simone Piazzini
  * COURSE: Software Engineering Methods (SET08103)
- * Last Modified: 10/02/2020
- * This application is designed for a company to retrieve information about countries related to their population, capital city, language etc.
- */
-
-/*
- * Authors: Davide Pollicino, Magdalena Calkova, Simona Georgieva, Simone Piazzini
- * COURSE: Software Engineering Methods (SET08103)
- * Last Modified: 10/02/2020
+ * Last Modified: 29/02/2020
  * This application is designed for a company to retrieve information about countries related to their population, capital city, language etc.
  */
 
@@ -806,7 +799,7 @@ public class App {
                             + "OR countrylanguage.Language = 'Spanish' "
                             + "OR countrylanguage.Language = 'Arabic' "
                             + "GROUP BY countrylanguage.Language "
-                            + "ORDER BY ROUND(SUM(country.Population * (countrylanguage.Percentage/100))) ASC;";
+                            + "ORDER BY ROUND(SUM(country.Population * (countrylanguage.Percentage/100))) DESC;";
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(getQuery);
 
@@ -839,13 +832,13 @@ public class App {
     private void printFiveLanguages(ArrayList<CountryLanguage> languageList)
     {
         // Print header for the capital cities
-        System.out.println(String.format("%-20s %-8s %-8s", "Language", "Population", "World Percentage"));
+        System.out.println(String.format("%-20s %-15s %-8s", "Language", "Population", "World Percentage"));
 
         // Loop over all capital cities in the list
         for (CountryLanguage cl : languageList)
         {
             String language_string =
-                    String.format("%-20s %-8s %-8s",
+                    String.format("%-20s %-15s %-8s",
                             cl.getLanguage(), cl.getPopulation(), cl.getWorldPercentage());
             System.out.println(language_string);
         }
