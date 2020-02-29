@@ -120,6 +120,45 @@ public class App {
     }
 
     /**
+     * Gets x cities in the world ordered by population from the largest, where x is specified by the user
+     * @param amount The number of cities to produce
+     * @return A list of x amount of cities
+     */
+    private ArrayList<City> getTopCitiesByPopulation(int amount) {
+        try
+        {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT city.Name, country.Name, city.District, city.Population "
+                    + "FROM city JOIN country ON (city.CountryCode=country.Code) "
+                    + "ORDER BY city.Population DESC "
+                    + "LIMIT " + amount + " ;";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<City> cityList = new ArrayList<City>();
+            while (rset.next()) {
+                City city = new City();
+                city.setName(rset.getString("city.Name"));
+                city.setCountry(rset.getString("country.Name"));
+                city.setDistrict(rset.getString("city.District"));
+                city.setPopulation(rset.getInt("city.Population"));
+                cityList.add(city);
+            }
+            return cityList;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get list of top " + amount + " cities by population in the world");
+            return null;
+        }
+    }
+
+    /**
      * Gets all cities in the specified continent by population from the largest to the smallest
      * @param continent string name of the continent
      * @return A list of all cities in the continent
@@ -156,6 +195,49 @@ public class App {
         {
             System.out.println(e.getMessage());
             System.out.println("Failed to get a list of all the cities by population in the continent");
+            return null;
+        }
+    }
+
+    /**
+     * Gets x cities in the specified continent, where x is provided by the user
+     * @param continent The string name of the continent
+     * @param amount The number of cities to produce
+     * @return A list of x amount of cities in the continent
+     */
+    private ArrayList<City> getCitiesByPopulationInContinent(String continent, int amount)
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT city.Name, country.Name, city.District, city.Population "
+                    + "FROM city JOIN country ON (city.CountryCode=country.Code) "
+                    + "WHERE country.Continent = '" + continent
+                    + "' ORDER BY city.Population DESC "
+                    + "LIMIT " + amount + ";";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<City> cityList = new ArrayList<City>();
+            while(rset.next())
+            {
+                City city = new City();
+                city.setName(rset.getString("city.Name"));
+                city.setCountry(rset.getString("country.Name"));
+                city.setDistrict(rset.getString("city.District"));
+                city.setPopulation(rset.getInt("city.Population"));
+                cityList.add(city);
+            }
+            return cityList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get list of top "+ amount +" cities by population in the continent");
             return null;
         }
     }
@@ -203,6 +285,49 @@ public class App {
     }
 
     /**
+     * Gets x cities in the specified region, where x is provided by the user
+     * @param continent The string name of the region
+     * @param amount The number of cities to produce
+     * @return A list of x amount of cities in the region
+     */
+    private ArrayList<City> getCitiesByPopulationInRegion(String region, int amount)
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT city.Name, country.Name, city.District, city.Population "
+                    + "FROM city JOIN country ON (city.CountryCode=country.Code) "
+                    + "WHERE country.Region = '" + region
+                    + "' ORDER BY city.Population DESC "
+                    + "LIMIT " + amount + ";";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<City> cityList = new ArrayList<City>();
+            while(rset.next())
+            {
+                City city = new City();
+                city.setName(rset.getString("city.Name"));
+                city.setCountry(rset.getString("country.Name"));
+                city.setDistrict(rset.getString("city.District"));
+                city.setPopulation(rset.getInt("city.Population"));
+                cityList.add(city);
+            }
+            return cityList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get list of top "+ amount +" cities by population in the region");
+            return null;
+        }
+    }
+
+    /**
      * Gets all cities in the specified country by population from largest to smallest
      * @param region string name of the country
      * @return A list of all cities in the country
@@ -239,6 +364,49 @@ public class App {
         {
             System.out.println(e.getMessage());
             System.out.println("Failed to get a list of all the cities by population in the country");
+            return null;
+        }
+    }
+
+    /**
+     * Gets x cities in the specified country, where x is provided by the user
+     * @param continent The string name of the country
+     * @param amount The number of cities to produce
+     * @return A list of x amount of cities in the country
+     */
+    private ArrayList<City> getCitiesByPopulationInCountry(String country, int amount)
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT city.Name, country.Name, city.District, city.Population "
+                    + "FROM city JOIN country ON (city.CountryCode=country.Code) "
+                    + "WHERE country.Name = '" + country
+                    + "' ORDER BY city.Population DESC "
+                    + "LIMIT " + amount + ";";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<City> cityList = new ArrayList<City>();
+            while(rset.next())
+            {
+                City city = new City();
+                city.setName(rset.getString("city.Name"));
+                city.setCountry(rset.getString("country.Name"));
+                city.setDistrict(rset.getString("city.District"));
+                city.setPopulation(rset.getInt("city.Population"));
+                cityList.add(city);
+            }
+            return cityList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get list of top "+ amount +" cities by population in the country");
             return null;
         }
     }
@@ -284,6 +452,49 @@ public class App {
         }
     }
 
+    /**
+     * Gets x cities in the specified district, where x is provided by the user
+     * @param continent The string name of the district
+     * @param amount The number of cities to produce
+     * @return A list of x amount of cities in the district
+     */
+    private ArrayList<City> getCitiesByPopulationInDistrict(String district, int amount)
+    {
+        try
+        {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT city.Name, country.Name, city.District, city.Population "
+                    + "FROM city JOIN country ON (city.CountryCode=country.Code) "
+                    + "WHERE city.District = '" + district
+                    + "' ORDER BY city.Population DESC "
+                    + "LIMIT " + amount + ";";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<City> cityList = new ArrayList<City>();
+            while(rset.next())
+            {
+                City city = new City();
+                city.setName(rset.getString("city.Name"));
+                city.setCountry(rset.getString("country.Name"));
+                city.setDistrict(rset.getString("city.District"));
+                city.setPopulation(rset.getInt("city.Population"));
+                cityList.add(city);
+            }
+            return cityList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get list of top "+ amount +" cities by population in the district");
+            return null;
+        }
+    }
 
     /**
      * Prints a list of cities
