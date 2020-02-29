@@ -27,6 +27,11 @@ public class App {
         // Connect to database
         a.connect();
 
+        ArrayList<CountryLanguage> clList = new ArrayList<CountryLanguage>();
+        clList=a.getFiveLanguages();
+        a.printFiveLanguages(clList);
+
+
         // Disconnect from database
         a.disconnect();
 
@@ -286,7 +291,7 @@ public class App {
 
     /**
      * Gets x cities in the specified region, where x is provided by the user
-     * @param continent The string name of the region
+     * @param region The string name of the region
      * @param amount The number of cities to produce
      * @return A list of x amount of cities in the region
      */
@@ -329,7 +334,7 @@ public class App {
 
     /**
      * Gets all cities in the specified country by population from largest to smallest
-     * @param region string name of the country
+     * @param country string name of the country
      * @return A list of all cities in the country
      */
     private ArrayList<City> getCitiesByPopulationInCountry(String country)
@@ -370,7 +375,7 @@ public class App {
 
     /**
      * Gets x cities in the specified country, where x is provided by the user
-     * @param continent The string name of the country
+     * @param country The string name of the country
      * @param amount The number of cities to produce
      * @return A list of x amount of cities in the country
      */
@@ -413,7 +418,7 @@ public class App {
 
     /**
      * Gets all cities in the specified district by population from largest to smallest
-     * @param region string name of the district
+     * @param district string name of the district
      * @return A list of all cities in the district
      */
     private ArrayList<City> getCitiesByPopulationInDistrict(String district)
@@ -454,7 +459,7 @@ public class App {
 
     /**
      * Gets x cities in the specified district, where x is provided by the user
-     * @param continent The string name of the district
+     * @param district The string name of the district
      * @param amount The number of cities to produce
      * @return A list of x amount of cities in the district
      */
@@ -777,4 +782,73 @@ public class App {
             System.out.println(capCity_string);
         }
     }
+
+
+    /**
+     * Gets the number of people speaking and the world percentage of English, Chinese, Spanish, Hindi and Arabic
+     * @return ArrayList of CountryLanguages of English, Chinese, Spanish, Hindi and Arabic
+     */
+    private ArrayList<CountryLanguage> getFiveLanguages()
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String getQuery =
+                    "SELECT countrylanguage.Language, "
+                            + "ROUND(SUM(country.Population * (countrylanguage.Percentage/100))) AS `People Speaking`, "
+                            + "CONCAT(ROUND((SUM(country.Population * (countrylanguage.Percentage/100))/(SELECT SUM(country.Population) FROM country)) * 100,3),'%') AS `World Percantage` "
+                            + "FROM countrylanguage JOIN country ON (countrylanguage.CountryCode = country.Code)"
+                            + "WHERE countrylanguage.Language = 'English' "
+                            + "OR countrylanguage.Language = 'Chinese' "
+                            + "OR countrylanguage.Language = 'Hindi' "
+                            + "OR countrylanguage.Language = 'Spanish' "
+                            + "OR countrylanguage.Language = 'Arabic' "
+                            + "GROUP BY countrylanguage.Language "
+                            + "ORDER BY ROUND(SUM(country.Population * (countrylanguage.Percentage/100))) ASC;";
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(getQuery);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<CountryLanguage> languageList = new ArrayList<CountryLanguage>();
+            while(rset.next())
+            {
+                CountryLanguage lan = new CountryLanguage();
+                lan.setLanguage(rset.getString("countrylanguage.Language"));
+                lan.setPopulation(rset.getInt("People Speaking"));
+                lan.setWorldPercentage(rset.getString("World Percantage"));
+                languageList.add(lan);
+
+            }
+            return languageList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Error while getting the populations of the 5 specified languages");
+            return null;
+        }
+    }
+
+
+    /**
+     * Prints the name, number of people speaking and the world percentage of CountryLanguages stored in the supplied list
+     * @param languageList the list of CountryLanguage to display contents of
+     */
+    private void printFiveLanguages(ArrayList<CountryLanguage> languageList)
+    {
+        // Print header for the capital cities
+        System.out.println(String.format("%-20s %-8s %-8s", "Language", "Population", "World Percentage"));
+
+        // Loop over all capital cities in the list
+        for (CountryLanguage cl : languageList)
+        {
+            String language_string =
+                    String.format("%-20s %-8s %-8s",
+                            cl.getLanguage(), cl.getPopulation(), cl.getWorldPercentage());
+            System.out.println(language_string);
+        }
+    }
+
 }

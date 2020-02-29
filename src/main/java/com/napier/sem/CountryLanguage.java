@@ -3,18 +3,16 @@ package com.napier.sem;
 /**
  * Authors: Davide Pollicino, Magdalena Calkova, Simona Georgieva, Simone Piazzini
  * COURSE: Software Engineering Methods (SET08103)
- * Last Modified: 20/02/2020
+ * Last Modified: 29/02/2020
  * CountryLanguage Class that stores information about an instance of a CountryLanguage
- * It stores getters and setters that make the variables language, country and percentage accessible
+ * It stores getters and setters that make the variables language, population(the number of people speaking the language) and worldPercentage(the percentage of people speaking the language of the world) accessible
  */
 
 public class CountryLanguage {
 
-    private String countryCode;
     private String language;
-    private boolean isOfficial;
-    private double percentage;
-    private String country;
+    private int population;
+    private String worldPercentage;
 
     //Get and Set method for language
     public String getLanguage()
@@ -26,24 +24,24 @@ public class CountryLanguage {
         this.language=new_lan;
     }
 
-    //Get and Set method for country
-    public String getCountry()
+    //Get and Set method for population (the number of people speaking the language)
+    public int getPopulation()
     {
-        return country;
+        return population;
     }
-    public void setCode(String new_coun)
+    public void setPopulation(int new_pop)
     {
-        this.country=new_coun;
+        this.population=new_pop;
     }
 
-    //Get and Set method for percentage
-    public double getPercentage()
+    //Get and Set method for worldPercentage
+    public String getWorldPercentage()
     {
-        return percentage;
+        return worldPercentage;
     }
-    public void setCode(double new_per)
+    public void setWorldPercentage(String new_per)
     {
-        this.percentage=new_per;
+        this.worldPercentage=new_per;
     }
 
 
