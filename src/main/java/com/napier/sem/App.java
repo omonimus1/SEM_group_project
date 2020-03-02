@@ -26,6 +26,8 @@ public class App {
 
         ArrayList<Country> cntList = new ArrayList<Country>();
         cntList = a.getCountries();
+        a.printCountries(cntList);
+
 
         // Disconnect from database
         a.disconnect();
@@ -152,6 +154,26 @@ public class App {
             return null;
         }
     }
+
+    /**
+     * Prints a list of capital cities
+     * @paramt capCities The list of capital cities to print
+     */
+    private void printCountries(ArrayList<Country> countries)
+    {
+        // Print header for the capital cities
+        System.out.println(String.format("%-5s %-50s %-20s %-50s %-8s %-30s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+
+        // Loop over all capital cities in the list
+        for (Country country : countries)
+        {
+            String countries_string =
+                    String.format("%-5s %-50s %-20s %-50s %-8s %-30s",
+                            country.getCode(), country.getName(), country.getContinent(), country.getRegion(),  country.getPopulation(), country.getCapital());
+            System.out.println(countries_string);
+        }
+    }
+
     /**
      * Gets all cities in the world ordered by population from the largest to the smallest
      * @return A list of all cities with their country and population
