@@ -25,6 +25,8 @@ public class Country {
     private String capital;
     private String code2;
     private String language;
+    private int cityPopulation;
+    private int percCountrysidePopulation;
 
     //Get and Set method for code
     public String getCode()
@@ -86,4 +88,19 @@ public class Country {
         this.capital=new_cap;
     }
 
+    public int getCityPopulation() {
+        return cityPopulation;
+    }
+
+    public void setCityPopulation(int cityPopulation) {
+        this.cityPopulation = cityPopulation;
+    }
+
+    public int getPercCountrysidePopulation() {
+        return percCountrysidePopulation;
+    }
+
+    public void setPercCountrysidePopulation(int percCountrysidePopulation) {
+        this.percCountrysidePopulation = percCountrysidePopulation;
+    }
 }

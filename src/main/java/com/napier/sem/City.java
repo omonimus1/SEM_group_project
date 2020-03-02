@@ -17,6 +17,7 @@ public class City {
     private int population;
     private String country;
 
+
     //Get and Set method for name
     public String getName()
     {

@@ -20,10 +20,12 @@ public class App {
         // Connect to database
         a.connect();
 
-        ArrayList<CountryLanguage> clList = new ArrayList<CountryLanguage>();
-        clList=a.getFiveLanguages();
-        a.printFiveLanguages(clList);
+       // ArrayList<CountryLanguage> clList = new ArrayList<CountryLanguage>();
+        //clList=a.getFiveLanguages();
+        //a.printFiveLanguages(clList);
 
+        ArrayList<Country> cntList = new ArrayList<Country>();
+        cntList = a.getCountries();
 
         // Disconnect from database
         a.disconnect();
@@ -78,6 +80,78 @@ public class App {
         }
     }
 
+    /* Get all the countries in the world retrieved from the Database organised by largest population to smallest*/
+    private ArrayList<Country> getCountries()
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT Code, Name, Continent, Region, Population, Capital" +
+                    "FROM country" +
+                    "ORDER BY Population DESC; ";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<Country> countryList = new ArrayList<Country>();
+            while(rset.next())
+            {
+                Country country = new Country();
+                country.setCode(rset.getString("Code"));
+                country.setName(rset.getString("country.Name"));
+                country.setContinent(rset.getString("Continent"));
+                country.setRegion(rset.getString("Region"));
+                country.setPopulation(rset.getInt("Population"));
+                country.setCapital(rset.getString("Capital"));
+                countryList.add(country);
+            }
+            return countryList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a list of all the cities by population in the world");
+            return null;
+        }
+    }
+
+
+    private ArrayList<Country> getTopCountries(int n)
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT Name" +
+                    "FROM country" +
+                    "ORDER BY Population DESC; "
+                    + "LIMIT " + n + " ;";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<Country> countryList = new ArrayList<Country>();
+            while(rset.next())
+            {
+                Country country = new Country();
+                country.setName(rset.getString("country.Name"));
+
+                countryList.add(country);
+            }
+            return countryList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a list of all the cities by population in the world");
+            return null;
+        }
+    }
     /**
      * Gets all cities in the world ordered by population from the largest to the smallest
      * @return A list of all cities with their country and population
