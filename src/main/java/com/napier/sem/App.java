@@ -119,18 +119,18 @@ public class App {
      * @param  contient
      * @return the total population in a specific Continent
      * */
-/*
-    private int getPopulationOfAContinent(String continent)
-    {
 
-        int population = 0;
+    private String getPopulationOfAContinent(String continent)
+    {
+        String population = "";
         try {
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
             // Create String for SQL statement
-            String strSelect = "SELECT SUM(Population)" +
-                    "FROM world;";
+            String strSelect =  "SELECT SUM(Population) " +
+                    "FROM country;";
+
 
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -139,72 +139,166 @@ public class App {
 
             while(rset.next())
             {
-                City city = new City();
-                population = rset.getInt("city.Population");
+                Country country = new Country();
+                population = (rset.getString("SUM(Population)"));
             }
             return population;
         }
         catch(Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get a list of all the cities by population in the world");
-            return 1;
+            System.out.println("Failed to get total world population");
+            return "Error while Fetching Population Present in a specific Continent";
         }
     }
-*/
+
     /**
      * getPopulationOfTheWorld()
      * @param  country
      * @return the total population in a specific country
      * */
-   /*
-    private int getPopulationOfACountry (String country)
+
+    private String getPopulationOfACountry (String country)
     {
+        String population = "";
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect =  "SELECT SUM(Population) " +
+                    "FROM country;";
 
 
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+
+            while(rset.next())
+            {
+                Country country = new Country();
+                population = (rset.getString("SUM(Population)"));
+            }
+            return population;
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get total country population");
+            return "Error while Fetching Population of the Country " + country;
+        }
     }
-*/
+
 
     /**
      * getPopulationOfTheWorld()
      * @param  region
      * @return the total population in a specific region
      * */
-    /*
-    private int getPopulationOfRegion (String region)
+    private String getPopulationOfRegion (String region)
     {
-        int population = 0;
+        String population = "";
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
 
-        returun population;
+            // Create String for SQL statement
+            String strSelect =  "SELECT SUM(Population) " +
+                    "FROM country;";
+
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+
+            while(rset.next())
+            {
+                Country country = new Country();
+                population = (rset.getString("SUM(Population)"));
+            }
+            return population;
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error while fetching the Population living the District : " + region);
+            return "Error while fetching the Population living the District : " + region;
+        }
     }
-*/
+
     /**
      * getPopulationOfTheWorld()
      * @param  district
      * @return the total population in a specific district
      * */
-    /*
-    private int getPopulationDistrict( String district)
+    private String getPopulationDistrict( String district)
     {
-        int population = 0;
+        String population = "";
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
 
-        returun population;
+            // Create String for SQL statement
+            String strSelect =  "SELECT SUM(Population) " +
+                    "FROM country;";
 
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+
+            while(rset.next())
+            {
+                Country country = new Country();
+                population = (rset.getString("SUM(Population)"));
+            }
+            return population;
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error while fetching the Population living the District : " + district);
+            return "Error while fetching the Population living the District : " + district;
+        }
     }
-    */
+
 
     /**
      * getPopulationOfTheWorld()
      * @param    city
      * @return the total population in a specific Continent
      * */
-    /*
-    private int getPopulationOfACity (String city)
-    {
-        int population = 0;
 
-        returun population;
+    private String getPopulationOfACity (String city)
+    {
+        String population = "";
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect =  "SELECT SUM(Population) " +
+                    "FROM country;";
+
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+
+            while(rset.next())
+            {
+                Country country = new Country();
+                population = (rset.getString("SUM(Population)"));
+            }
+            return population;
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error while fetching the Population living the District : " + city);
+            return "Error while fetching the Population living the city : " + city;
+        }
     }
-*/
+
 
 
     /**
