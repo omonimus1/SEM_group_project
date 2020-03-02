@@ -24,8 +24,18 @@ public class App {
         clList=a.getFiveLanguages();
         a.printFiveLanguages(clList);
 
+        // Method testing
         String world_population = a.getPopulationOfTheWorld();
+        String continent_population = a.getPopulationOfAContinent("Oceania");
+        String city_population = a.getPopulationOfACity("Roma");
+
+        // Printing Result of the tests
         System.out.println("Population of the world: " + world_population);
+        System.out.println("Population of the Continent Ocenaia : " + continent_population);
+        System.out.println("Population of the city Roma: " + city_population);
+
+
+
         // Disconnect from database
         a.disconnect();
 
@@ -129,7 +139,8 @@ public class App {
 
             // Create String for SQL statement
             String strSelect =  "SELECT SUM(Population) " +
-                    "FROM country;";
+                    "FROM country" +
+                    "WHERE Continent = " + continent + ";";
 
 
             // Execute SQL Statement
@@ -276,8 +287,9 @@ public class App {
             Statement stmt = con.createStatement();
 
             // Create String for SQL statement
-            String strSelect =  "SELECT SUM(Population) " +
-                    "FROM country;";
+            String strSelect =  "SELECT Population " +
+                    "FROM country" +
+                    "WHERE Name = '" + city + "';";
 
 
             // Execute SQL Statement
@@ -288,7 +300,7 @@ public class App {
             while(rset.next())
             {
                 Country country = new Country();
-                population = (rset.getString("SUM(Population)"));
+                population = (rset.getString("Population"));
             }
             return population;
         }
