@@ -79,6 +79,82 @@ public class App {
     }
 
     /**
+     * getPopulationOfTheWorld()
+     * @return the total world population
+     * */
+    private int getPopulationOfTheWorld()
+    {
+        int population = 0;
+
+        returun population;
+    }
+
+    /**
+     * getPopulationOfTheWorld()
+     * @param  contient
+     * @return the total population in a specific Continent
+     * */
+    private int getPopulationOfAContinent(String continent)
+    {
+        int population = 0;
+
+        returun population;
+    }
+
+    /**
+     * getPopulationOfTheWorld()
+     * @param  country
+     * @return the total population in a specific country
+     * */
+    private int getPopulationOfACountry (String country)
+    {
+        int population = 0;
+
+        returun population;
+    }
+
+
+    /**
+     * getPopulationOfTheWorld()
+     * @param  region
+     * @return the total population in a specific region
+     * */
+    private int getPopulationOfRegion (String region)
+    {
+        int population = 0;
+
+        returun population;
+    }
+
+    /**
+     * getPopulationOfTheWorld()
+     * @param  district
+     * @return the total population in a specific district
+     * */
+    private int getPopulationDistrict( String district)
+    {
+        int population = 0;
+
+        returun population;
+
+    }
+
+
+    /**
+     * getPopulationOfTheWorld()
+     * @param    city
+     * @return the total population in a specific Continent
+     * */
+    private int getPopulationOfACity (String city)
+    {
+        int population = 0;
+
+        returun population;
+    }
+
+
+
+    /**
      * Gets all cities in the world ordered by population from the largest to the smallest
      * @return A list of all cities with their country and population
      */
