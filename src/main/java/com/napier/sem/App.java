@@ -29,7 +29,7 @@ public class App {
         String continent_population = a.getPopulationOfAContinent("Oceania");
         String country_population = a.getPopulationOfACountry("Italy");
         String city_population = a.getPopulationOfACity("Roma");
-        String district_population = String.valueOf(a.getCitiesByPopulationInDistrict("California"));
+        String district_population = a.getPopulationDistrict("Texas");
         String region_population = a.getPopulationOfRegion("South America");
 
         // Printing Result of the tests
@@ -220,9 +220,9 @@ public class App {
 
             // Create String for SQL statement
             // @output should be 345780000
-            String strSelect =  "SELECT SUM(Population)" +
-                    " FROM country " +
-                    " WHERE Region =  '" +
+            String strSelect =  "SELECT SUM(Population) " +
+                    "FROM country " +
+                    "WHERE Region =  '" +
                      region + "';";
             System.out.println(strSelect);
             // Execute SQL Statement
@@ -241,7 +241,7 @@ public class App {
 
     /**
      * getPopulationOfTheWorld()
-     * @param  district
+
      * @return the total population in a specific district
      * */
     private String getPopulationDistrict(String district)
@@ -251,7 +251,7 @@ public class App {
         try {
             // Create an SQL Statement
             Statement stmt = con.createStatement();
-            System.out.printn("Insert district function");
+            System.out.println("Insert district function");
             // Create String for SQL statement
             //@ output should be 16716706
             String strSelect =  "SELECT SUM(Population)" +
@@ -259,19 +259,18 @@ public class App {
                     " WHERE District = '" +
                      district + "';";
 
-            System.out.println("Query for District Population  - " + strSelect);
+            System.out.println("Query for District Population: " + strSelect);
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
             // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
             population = (rset.getString("SUM(Population)"));
-            if(population == "NULL")
-                System.out.println("NUll value after fetching population in district");
+
             return population;
         }
         catch(Exception e) {
             System.out.println(e.getMessage());
-            return "Error while fetching the Population living the District : " + district;
+            return "Error while fetching the Population living the District Texas:" ;
         }
     }
 
@@ -648,7 +647,6 @@ public class App {
 
     /**
      * Gets all cities in the specified district by population from largest to smallest
-     * @param district string name of the district
      * @return A list of all cities in the district
      */
     private ArrayList<City> getCitiesByPopulationInDistrict(String district)
