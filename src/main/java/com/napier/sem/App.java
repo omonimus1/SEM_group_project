@@ -27,6 +27,7 @@ public class App {
         // Method testing
         String world_population = a.getPopulationOfTheWorld();
         String continent_population = a.getPopulationOfAContinent("Oceania");
+        String country_population = a.getPopulationOfACountry("Italy");
         String city_population = a.getPopulationOfACity("Roma");
         String district_population = String.valueOf(a.getCitiesByPopulationInDistrict("California"));
         String region_population = a.getPopulationOfRegion("South America");
@@ -34,6 +35,7 @@ public class App {
         // Printing Result of the tests
         System.out.println("Population of the world: " + world_population);
         System.out.println("Population of the Continent Ocenaia : " + continent_population);
+        System.out.println("Population of the country Italy: " + country_population);
         System.out.println("Population of the city Roma: " + city_population);
         System.out.println("Population of the District California: " + district_population);
         System.out.println("Population of the Region South America: " + region_population);
@@ -122,7 +124,6 @@ public class App {
         }
         catch(Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get total world population");
             return "Error while Fetching Global Population";
         }
     }
@@ -135,17 +136,19 @@ public class App {
 
     private String getPopulationOfAContinent(String continent)
     {
+        System.out.println("Starting continent function");
         String population = "";
         try {
             // Create an SQL Statement
             Statement stmt = con.createStatement();
-
+            System.out.print("INSIDE TRY");
             // Create String for SQL statement
+            // @output should be 30401150
             String strSelect =  "SELECT SUM(Population) " +
                     " FROM country " +
-                    " WHERE Continent = " + continent + ";";
+                    " WHERE Continent = '" + continent + "';";
 
-
+            System.out.println(strSelect);
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
@@ -160,8 +163,7 @@ public class App {
         }
         catch(Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get total world population");
-            return "Error while Fetching Population Present in a specific Continent";
+            return "Error while Fetching Population Present in the " + continent + " continent;";
         }
     }
 
@@ -179,10 +181,11 @@ public class App {
             Statement stmt = con.createStatement();
 
             // Create String for SQL statement
-            String strSelect =  "SELECT SUM(Population)" +
+            // @output should be 57680000
+            String strSelect =  "SELECT Population" +
                     " FROM country " +
-                    " WHERE Name = " +
-                    country + ";";
+                    " WHERE Name = '" +
+                    country + "';";
 
 
             // Execute SQL Statement
@@ -192,14 +195,13 @@ public class App {
 
             while(rset.next())
             {
-                population = (rset.getString("SUM(Population)"));
+                population = (rset.getString("Population"));
             }
             return population;
         }
         catch(Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get total country population");
-            return "Error while Fetching Population of the Country " + country;
+            return "Error while Fetching Population of the Country: " + country;
         }
     }
 
@@ -217,12 +219,12 @@ public class App {
             Statement stmt = con.createStatement();
 
             // Create String for SQL statement
+            // @output should be 345780000
             String strSelect =  "SELECT SUM(Population)" +
                     " FROM country " +
-                    " WHERE Region = " +
-                     region + ";";
-
-
+                    " WHERE Region =  '" +
+                     region + "';";
+            System.out.println(strSelect);
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
@@ -233,8 +235,7 @@ public class App {
         }
         catch(Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Error while fetching the Population living the District : " + region);
-            return "Error while fetching the Population living the District : " + region;
+            return "Error while fetching the Population living the Region : " + region;
         }
     }
 
@@ -246,22 +247,23 @@ public class App {
     private String getPopulationDistrict(String district)
     {
         String population = "";
+        System.out.println("Starting district function");
         try {
             // Create an SQL Statement
             Statement stmt = con.createStatement();
-
+            System.out.printn("Insert district function");
             // Create String for SQL statement
+            //@ output should be 16716706
             String strSelect =  "SELECT SUM(Population)" +
                     " FROM city " +
-                    " WHERE District = " +
-                     district + ";";
+                    " WHERE District = '" +
+                     district + "';";
 
             System.out.println("Query for District Population  - " + strSelect);
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
             // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
-
             population = (rset.getString("SUM(Population)"));
             if(population == "NULL")
                 System.out.println("NUll value after fetching population in district");
@@ -269,7 +271,6 @@ public class App {
         }
         catch(Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Error while fetching the Population living the District : " + district);
             return "Error while fetching the Population living the District : " + district;
         }
     }
@@ -290,8 +291,8 @@ public class App {
 
             // Create String for SQL statement
             String strSelect =  "SELECT Population" +
-                    " FROM country " +
-                    " WHERE Name = " + city + ";";
+                    " FROM city " +
+                    " WHERE Name = '" + city + "';";
 
 
             // Execute SQL Statement
@@ -308,7 +309,6 @@ public class App {
         }
         catch(Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Error while fetching the Population living the District : " + city);
             return "Error while fetching the Population living the city : " + city;
         }
     }
