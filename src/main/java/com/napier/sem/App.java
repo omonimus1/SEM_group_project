@@ -24,6 +24,22 @@ public class App {
         clList=a.getFiveLanguages();
         a.printFiveLanguages(clList);
 
+        // Method testing
+        String world_population = a.getPopulationOfTheWorld();
+        String continent_population = a.getPopulationOfAContinent("Oceania");
+        String country_population = a.getPopulationOfACountry("Italy");
+        String city_population = a.getPopulationOfACity("Roma");
+        String district_population = a.getPopulationDistrict("Texas");
+        String region_population = a.getPopulationOfRegion("South America");
+
+        // Printing Result of the tests
+        System.out.println("Population of the world: " + world_population);
+        System.out.println("Population of the Continent Ocenaia : " + continent_population);
+        System.out.println("Population of the country Italy: " + country_population);
+        System.out.println("Population of the city Roma: " + city_population);
+        System.out.println("Population of the District California: " + district_population);
+        System.out.println("Population of the Region South America: " + region_population);
+
 
         // Disconnect from database
         a.disconnect();
@@ -77,6 +93,226 @@ public class App {
             }
         }
     }
+
+    /**
+     * getPopulationOfTheWorld()
+     * @return the total world population
+     * */
+    private String getPopulationOfTheWorld()
+    {
+        String population = "";
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect =  "SELECT SUM(Population) " +
+                    "FROM country;";
+
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+
+            while(rset.next())
+            {
+                Country country = new Country();
+                 population = (rset.getString("SUM(Population)"));
+            }
+            return population;
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            return "Error while Fetching Global Population";
+        }
+    }
+
+    /**
+     * getPopulationOfTheWorld()
+     * @param  contient
+     * @return the total population in a specific Continent
+     * */
+
+    private String getPopulationOfAContinent(String continent)
+    {
+        System.out.println("Starting continent function");
+        String population = "";
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+            System.out.print("INSIDE TRY");
+            // Create String for SQL statement
+            // @output should be 30401150
+            String strSelect =  "SELECT SUM(Population) " +
+                    " FROM country " +
+                    " WHERE Continent = '" + continent + "';";
+
+            System.out.println(strSelect);
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+
+            while(rset.next())
+            {
+                Country country = new Country();
+                population = (rset.getString("SUM(Population)"));
+            }
+            return population;
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            return "Error while Fetching Population Present in the " + continent + " continent;";
+        }
+    }
+
+    /**
+     * getPopulationOfTheWorld()
+     * @param  country
+     * @return the total population in a specific country
+     * */
+
+    private String getPopulationOfACountry(String country)
+    {
+        String population = "";
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            // @output should be 57680000
+            String strSelect =  "SELECT Population" +
+                    " FROM country " +
+                    " WHERE Name = '" +
+                    country + "';";
+
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+
+            while(rset.next())
+            {
+                population = (rset.getString("Population"));
+            }
+            return population;
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            return "Error while Fetching Population of the Country: " + country;
+        }
+    }
+
+
+    /**
+     * getPopulationOfTheWorld()
+     * @param  region
+     * @return the total population in a specific region
+     * */
+    private String getPopulationOfRegion (String region)
+    {
+        String population = "";
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            // @output should be 345780000
+            String strSelect =  "SELECT SUM(Population) " +
+                    "FROM country " +
+                    "WHERE Region =  '" +
+                     region + "';";
+            System.out.println(strSelect);
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+
+            population = (rset.getString("SUM(Population)"));
+            return population;
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            return "Error while fetching the Population living the Region : " + region;
+        }
+    }
+
+    /**
+     * getPopulationOfTheWorld()
+
+     * @return the total population in a specific district
+     * */
+    private String getPopulationDistrict(String district)
+    {
+        String population = "";
+        System.out.println("Starting district function");
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+            System.out.println("Insert district function");
+            // Create String for SQL statement
+            //@ output should be 16716706
+            String strSelect =  "SELECT SUM(Population)" +
+                    " FROM city " +
+                    " WHERE District = '" +
+                     district + "';";
+
+            System.out.println("Query for District Population: " + strSelect);
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            population = (rset.getString("SUM(Population)"));
+
+            return population;
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            return "Error while fetching the Population living the District Texas:" ;
+        }
+    }
+
+
+    /**
+     * getPopulationOfTheWorld()
+     * @param    city
+     * @return the total population in a specific Continent
+     * */
+
+    private String getPopulationOfACity (String city)
+    {
+        String population = "";
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect =  "SELECT Population" +
+                    " FROM city " +
+                    " WHERE Name = '" + city + "';";
+
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+
+            while(rset.next())
+            {
+                Country country = new Country();
+                population = (rset.getString("Population"));
+            }
+            return population;
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+            return "Error while fetching the Population living the city : " + city;
+        }
+    }
+
+
 
     /**
      * Gets all cities in the world ordered by population from the largest to the smallest
@@ -411,7 +647,6 @@ public class App {
 
     /**
      * Gets all cities in the specified district by population from largest to smallest
-     * @param district string name of the district
      * @return A list of all cities in the district
      */
     private ArrayList<City> getCitiesByPopulationInDistrict(String district)
