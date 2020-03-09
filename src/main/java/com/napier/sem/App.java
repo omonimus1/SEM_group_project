@@ -93,7 +93,269 @@ public class App {
             }
         }
     }
+    /* Get all the countries in the world retrieved from the Database organised by largest population to smallest*/
+    private ArrayList<Country> getCountries()
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
 
+            // Create String for SQL statement
+            String strSelect = "SELECT Code, Name, Continent, Region, Population, Capital " +
+                    "FROM country " +
+                    "ORDER BY Population DESC; ";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<Country> countryList = new ArrayList<Country>();
+            while(rset.next())
+            {
+                Country country = new Country();
+                country.setCode(rset.getString("country.Code"));
+                country.setName(rset.getString("country.Name"));
+                country.setContinent(rset.getString("country.Continent"));
+                country.setRegion(rset.getString("country.Region"));
+                country.setPopulation(rset.getInt("country.Population"));
+                country.setCapital(rset.getString("country.Capital"));
+                countryList.add(country);
+            }
+            return countryList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a list of all the cities by population in the world");
+            return null;
+        }
+    }
+
+    /* Generate report for a given number
+    * of countries
+    * */
+    private ArrayList<Country> getTopCountries(int n)
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT Name " +
+                    "FROM country " +
+                    "ORDER BY Population DESC; "
+                    + "LIMIT " + n + " ;";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<Country> countryList = new ArrayList<Country>();
+            while(rset.next())
+            {
+                Country country = new Country();
+                country.setName(rset.getString("country.Name"));
+                country.setCode(rset.getString("country.Code"));
+                country.setName(rset.getString("country.Name"));
+                country.setContinent(rset.getString("country.Continent"));
+                country.setRegion(rset.getString("country.Region"));
+                country.setPopulation(rset.getInt("country.Population"));
+                country.setCapital(rset.getString("country.Capital"));
+
+                countryList.add(country);
+            }
+            return countryList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a list of all the cities by population in the world");
+            return null;
+        }
+    }
+
+    /*
+     * Generate a report for all the countries in a given continent organised by largest to smallest
+     *
+     *
+     * */
+    private ArrayList<Country> getCountriesinContinent(String continent)
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT Code, Name, Continent, Region, Population, Capital " +
+                    "FROM country " +
+                    "WHERE continent = " + continent  +
+                    " ORDER BY Population DESC; ";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<Country> countryList = new ArrayList<Country>();
+            while(rset.next())
+            {
+                Country country = new Country();
+                country.setCode(rset.getString("country.Code"));
+                country.setName(rset.getString("country.Name"));
+                country.setContinent(rset.getString("country.Continent"));
+                country.setRegion(rset.getString("country.Region"));
+                country.setPopulation(rset.getInt("country.Population"));
+                country.setCapital(rset.getString("country.Capital"));
+                countryList.add(country);
+            }
+            return countryList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a list of all the cities by population in the world");
+            return null;
+        }
+    }
+
+    /*
+     *  Generate report of top 'n' populated countries provided by the user
+     *
+     * */
+    private ArrayList<Country> getTopCountriesinContinent(String continent, int n)
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT Name " +
+                    "FROM country " +
+                    "WHERE continent = " + continent +
+                    " ORDER BY Population DESC "
+                    + " LIMIT BY " + n + " ;";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<Country> countryList = new ArrayList<Country>();
+            while(rset.next())
+            {
+                Country country = new Country();
+                country.setCode(rset.getString("country.Code"));
+                country.setName(rset.getString("country.Name"));
+                country.setContinent(rset.getString("country.Continent"));
+                country.setRegion(rset.getString("country.Region"));
+                country.setPopulation(rset.getInt("country.Population"));
+                country.setCapital(rset.getString("country.Capital"));
+                countryList.add(country);
+            }
+            return countryList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a list of all the cities by population in the world");
+            return null;
+        }
+    }
+
+
+    private ArrayList<Country> getCountriesinRegion(String region)
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT Code, Name, Continent, Region, Population, Capital " +
+                    "FROM country " +
+                    "WHERE region =" + region +
+                    " ORDER BY Population DESC; ";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<Country> countryList = new ArrayList<Country>();
+            while(rset.next())
+            {
+                Country country = new Country();
+                country.setCode(rset.getString("country.Code"));
+                country.setName(rset.getString("country.Name"));
+                country.setContinent(rset.getString("country.Continent"));
+                country.setRegion(rset.getString("country.Region"));
+                country.setPopulation(rset.getInt("country.Population"));
+                country.setCapital(rset.getString("country.Capital"));
+                countryList.add(country);
+            }
+            return countryList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a list of all the cities by population in the world");
+            return null;
+        }
+    }
+
+
+    private ArrayList<Country> getTopCountriesinRegion(String region, int n)
+    {
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String strSelect = "SELECT Name " +
+                    "FROM country " + region +
+                    " ORDER BY Population DESC "
+                    + " LIMIT " + n + " ;";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<Country> countryList = new ArrayList<Country>();
+            while(rset.next())
+            {
+                Country country = new Country();
+                country.setCode(rset.getString("country.Code"));
+                country.setName(rset.getString("country.Name"));
+                country.setContinent(rset.getString("country.Continent"));
+                country.setRegion(rset.getString("country.Region"));
+                country.setPopulation(rset.getInt("country.Population"));
+                country.setCapital(rset.getString("country.Capital"));
+                countryList.add(country);
+            }
+            return countryList;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get a list of all the cities by population in the world");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of capital cities
+     * @paramt capCities The list of capital cities to print
+     */
+    private void printCountries(ArrayList<Country> countries)
+    {
+        // Print header for the capital cities
+        System.out.println(String.format("%-5s %-50s %-20s %-50s %-8s %-30s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+
+        // Loop over all capital cities in the list
+        for (Country country : countries)
+        {
+            String countries_string =
+                    String.format("%-5s %-50s %-20s %-50s %-8s %-30s",
+                            country.getCode(), country.getName(), country.getContinent(), country.getRegion(),  country.getPopulation(), country.getCapital());
+            System.out.println(countries_string);
+        }
+    }
     /**
      * getPopulationOfTheWorld()
      * @return the total world population
@@ -130,7 +392,7 @@ public class App {
 
     /**
      * getPopulationOfTheWorld()
-     * @param  contient
+     * @param  continent
      * @return the total population in a specific Continent
      * */
 
