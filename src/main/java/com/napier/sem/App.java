@@ -605,7 +605,7 @@ public class App {
      * @param country string name of the country
      * @return A list of all cities in the country
      */
-    private ArrayList<City> getCitiesByPopulationInCountry(String country)
+    public ArrayList<City> getCitiesByPopulationInCountry(String country)
     {
         try {
             if(country == null || country == " ")
@@ -692,7 +692,7 @@ public class App {
      * Gets all cities in the specified district by population from largest to smallest
      * @return A list of all cities in the district
      */
-    private ArrayList<City> getCitiesByPopulationInDistrict(String district)
+    public ArrayList<City> getCitiesByPopulationInDistrict(String district)
     {
         if(district == null || district == " ")
                 return null;
@@ -736,7 +736,7 @@ public class App {
      * @param amount The number of cities to produce
      * @return A list of x amount of cities in the district
      */
-    private ArrayList<City> getCitiesByPopulationInDistrict(String district, int limit)
+    public ArrayList<City> getCitiesByPopulationInDistrict(String district, int limit)
     {
         try
         {
@@ -807,7 +807,7 @@ public class App {
      * Gets all the capital cities in teh world ordered by population from the largest
      * @return A list of all capital cities with their country and population
      */
-    private ArrayList<City> getAllCapitalCitiesByPopulation()
+    public ArrayList<City> getAllCapitalCitiesByPopulation()
     {
         try {
             // Create an SQL Statement
@@ -847,12 +847,14 @@ public class App {
      * @param amount The number of capital cities to produce
      * @return A list of x amount of capital cities with their country and population
      */
-    private ArrayList<City> getTopCapitalCitiesByPopulation(int limit) {
+    public ArrayList<City> getTopCapitalCitiesByPopulation(int limit) {
         try {
-            // Create an SQL Statement
-            Statement stmt = con.createStatement();
             if(limit <= 0)
                 return null;
+            // Create an SQL Statement
+
+            Statement stmt = con.createStatement();
+
             // Create String for SQL statement
             String strSelect = "SELECT city.Name, country.Name, city.Population "
                     + "FROM city JOIN country ON (city.CountryCode=country.Code) "
@@ -885,9 +887,11 @@ public class App {
      * @param continent string name of the continent
      * @return A list of all capital cities in the continent
      */
-    private ArrayList<City> getCapitalCitiesByPopulationInContinent(String continent)
+    public ArrayList<City> getCapitalCitiesByPopulationInContinent(String continent)
     {
         try {
+           if(continent == null || continent == " ")
+               return null;
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
@@ -927,10 +931,12 @@ public class App {
      * @param amount The number of capital cities to produce
      * @return A list of x amount of capital cities in the continent
      */
-    private ArrayList<City> getCapitalCitiesByPopulationInContinent(String continent, int amount)
+    public ArrayList<City> getCapitalCitiesByPopulationInContinent(String continent, int amount)
     {
         try {
-            // Create an SQL Statement
+            if(continent == null || continent == " "  || amount <= 0 )
+                return null;
+                // Create an SQL Statement
             Statement stmt = con.createStatement();
 
             // Create String for SQL statement
@@ -969,9 +975,11 @@ public class App {
      * @param region string name of the region
      * @return A list of all capital cities in the region
      */
-    private ArrayList<City> getCapitalCitiesByPopulationInRegion(String region)
+    public ArrayList<City> getCapitalCitiesByPopulationInRegion(String region)
     {
         try {
+            if (region == null  || region == " ")
+                return null;
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
@@ -1011,9 +1019,12 @@ public class App {
      * @param amount The number of capital cities to produce
      * @return A list of all capital cities in the region
      */
-    private ArrayList<City> getCapitalCitiesByPopulationInRegion(String region, int amount)
+    public ArrayList<City> getCapitalCitiesByPopulationInRegion(String region, int amount)
     {
         try {
+            if(region == null  || region == " "  || amount <=0)
+                return null;
+
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
@@ -1052,7 +1063,7 @@ public class App {
      * Prints a list of capital cities
      * @paramt capCities The list of capital cities to print
      */
-    private void printCapitalCities(ArrayList<City> capCities)
+    public void printCapitalCities(ArrayList<City> capCities)
     {
         // Print header for the capital cities
         System.out.println(String.format("%-60s %-50s %-8s", "Name", "Country", "Population"));
@@ -1072,7 +1083,7 @@ public class App {
      * Gets the number of people speaking and the world percentage of English, Chinese, Spanish, Hindi and Arabic
      * @return ArrayList of CountryLanguages of English, Chinese, Spanish, Hindi and Arabic
      */
-    private ArrayList<CountryLanguage> getFiveLanguages()
+    public ArrayList<CountryLanguage> getFiveLanguages()
     {
         try {
             // Create an SQL Statement

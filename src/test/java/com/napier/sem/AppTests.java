@@ -26,11 +26,11 @@ public class AppTests {
     void testPopulationInCityIfNull()
     {
         Assert.assertEquals("If the name of city is null, the population must be null" , null , app.getPopulationOfACity(null));
-
     }
 
     @Test
-    void testRegionNull() {
+    void testRegionNull()
+    {
         Assert.assertEquals("Region Population must be null", null, app.getPopulationOfRegion(null));
     }
 
@@ -71,6 +71,50 @@ public class AppTests {
         ArrayList<City> cities = new ArrayList<City>();
         cities.add(null);
         app.printCities(cities);
+    }
+
+    @Test
+    void testGetCitiesByPopulationInCountryIfNull()
+    {
+        Assert.assertEquals("If get city by Population In Country reiceives a null in input, the result will be null" , null , app.getCitiesByPopulationInCountry(null));
+    }
+
+    @Test
+    void testGetCitiesInDistrictIfNull()
+    {
+        Assert.assertEquals("Dataset of the city will be null" ,  null , app.getCitiesByPopulationInDistrict(" "));
+    }
+
+    @Test
+    void testGetCitiesByPopulationInDistinct()
+    {
+        Assert.assertEquals("If the NUmber of the N cities to show is negative the result is null",null , app.getCitiesByPopulationInDistrict("California", -1));
+    }
+
+    @Test
+    void testGetTopCitiesByPopulation()
+    {
+        Assert.assertEquals("If the number of cities to show is negative the dataset  will be null" ,  null , app.getTopCapitalCitiesByPopulation(0));
+    }
+
+    @Test
+    void testGetCitiesInContinent()
+    {
+        Assert.assertEquals("If the to continent does not exists ,  the dataset  will be null" ,  null , app.getCapitalCitiesByPopulationInContinent(null));
+
+    }
+
+
+    @Test
+    void testGetTopCitiesByPopulationInContinent()
+    {
+        Assert.assertEquals("If the to continent does not exists ,  the dataset  will be null" ,  null , app.getCapitalCitiesByPopulationInContinent("", 0));
+    }
+
+    @Test
+    void testGetCitiesInRegion()
+    {
+        Assert.assertEquals("If the to region does not exists ,  the dataset  will be null" ,  null , app.getCapitalCitiesByPopulationInRegion(" " , 0));
     }
 
 
