@@ -226,7 +226,7 @@ public class App {
         try {
             if(region == null ||  region == " ")
             {
-                return "-1";
+                return null;
             }
 
             // Create an SQL Statement
@@ -264,7 +264,7 @@ public class App {
         try {
             if( district == null ||  district == " ")
             {
-                return "-1";
+                return null;
             }
 
             // Create an SQL Statement
@@ -306,7 +306,7 @@ public class App {
         try {
             if(city == null ||  city == " ")
             {
-                return "-1";
+                return null;
             }
             // Create an SQL Statement
             Statement stmt = con.createStatement();
@@ -384,8 +384,9 @@ public class App {
     private ArrayList<City> getTopCitiesByPopulation(int amount) {
         try
         {
-            if( amount == 0 )
+            if( amount <= 0 )
             {
+                System.out.println("You must insert a positive number");
                 return null;
             }
             // Create an SQL Statement
@@ -470,9 +471,12 @@ public class App {
      * @param amount The number of cities to produce
      * @return A list of x amount of cities in the continent
      */
-    private ArrayList<City> getCitiesByPopulationInContinent(String continent, int amount)
+    private ArrayList<City> getCitiesByPopulationInContinent(String continent, int limit)
     {
         try {
+            if(limit <=0 || continent == null || continent == " ")
+                return null;
+
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
@@ -481,7 +485,7 @@ public class App {
                     + "FROM city JOIN country ON (city.CountryCode=country.Code) "
                     + "WHERE country.Continent = '" + continent
                     + "' ORDER BY city.Population DESC "
-                    + "LIMIT " + amount + ";";
+                    + "LIMIT " + limit + ";";
 
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -558,7 +562,7 @@ public class App {
     private ArrayList<City> getCitiesByPopulationInRegion(String region, int limit)
     {
         try {
-            if(region == null || region == " " || limit == 0)
+            if(region == null || region == " " || limit <= 0)
             {
                 return null;
             }
@@ -648,7 +652,7 @@ public class App {
     private ArrayList<City> getCitiesByPopulationInCountry(String country, int limit)
     {
         try {
-            if(country == null || country == "")
+            if(country == null || country == "" || limit <= 0 )
                 return null;
             // Create an SQL Statement
             Statement stmt = con.createStatement();
@@ -690,6 +694,8 @@ public class App {
      */
     private ArrayList<City> getCitiesByPopulationInDistrict(String district)
     {
+        if(district == null || district == " ")
+                return null;
         try {
             // Create an SQL Statement
             Statement stmt = con.createStatement();
@@ -730,10 +736,12 @@ public class App {
      * @param amount The number of cities to produce
      * @return A list of x amount of cities in the district
      */
-    private ArrayList<City> getCitiesByPopulationInDistrict(String district, int amount)
+    private ArrayList<City> getCitiesByPopulationInDistrict(String district, int limit)
     {
         try
         {
+            if(district == " " || district == null || limit <= 0)
+                return null;
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
@@ -742,7 +750,7 @@ public class App {
                     + "FROM city JOIN country ON (city.CountryCode=country.Code) "
                     + "WHERE city.District = '" + district
                     + "' ORDER BY city.Population DESC "
-                    + "LIMIT " + amount + ";";
+                    + "LIMIT " + limit + ";";
 
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -839,17 +847,18 @@ public class App {
      * @param amount The number of capital cities to produce
      * @return A list of x amount of capital cities with their country and population
      */
-    private ArrayList<City> getTopCapitalCitiesByPopulation(int amount) {
+    private ArrayList<City> getTopCapitalCitiesByPopulation(int limit) {
         try {
             // Create an SQL Statement
             Statement stmt = con.createStatement();
-
+            if(limit <= 0)
+                return null;
             // Create String for SQL statement
             String strSelect = "SELECT city.Name, country.Name, city.Population "
                     + "FROM city JOIN country ON (city.CountryCode=country.Code) "
                     + "WHERE country.Capital = city.ID "
                     + "ORDER BY city.Population DESC "
-                    + "LIMIT " + amount + " ;";
+                    + "LIMIT " + limit + " ;";
 
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
