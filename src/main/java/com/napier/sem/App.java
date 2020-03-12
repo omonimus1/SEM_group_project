@@ -40,10 +40,8 @@ public class App {
         System.out.println("Population of the District California: " + district_population);
         System.out.println("Population of the Region South America: " + region_population);
 
-
         // Disconnect from database
         a.disconnect();
-
     }
 
     /** con: Instance of the Connection object*/
@@ -139,6 +137,11 @@ public class App {
         System.out.println("Starting continent function");
         String population = "";
         try {
+            if(continent == null ||  continent == " ")
+            {
+                return "-1";
+            }
+
             // Create an SQL Statement
             Statement stmt = con.createStatement();
             System.out.print("INSIDE TRY");
@@ -173,10 +176,16 @@ public class App {
      * @return the total population in a specific country
      * */
 
-    private String getPopulationOfACountry(String country)
+    public String getPopulationOfACountry(String country)
     {
         String population = "";
         try {
+
+            if(country == null ||  country == " ")
+            {
+                return "-1";
+            }
+
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
@@ -215,6 +224,11 @@ public class App {
     {
         String population = "";
         try {
+            if(region == null ||  region == " ")
+            {
+                return "-1";
+            }
+
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
@@ -243,12 +257,16 @@ public class App {
      * getPopulationOfTheWorld()
 
      * @return the total population in a specific district
-     * */
+     * @param district*/
     private String getPopulationDistrict(String district)
     {
         String population = "";
-        System.out.println("Starting district function");
         try {
+            if( district == null ||  district == " ")
+            {
+                return "-1";
+            }
+
             // Create an SQL Statement
             Statement stmt = con.createStatement();
             System.out.println("Insert district function");
@@ -270,7 +288,8 @@ public class App {
         }
         catch(Exception e) {
             System.out.println(e.getMessage());
-            return "Error while fetching the Population living the District Texas:" ;
+            population = "-1";
+            return population;
         }
     }
 
@@ -285,6 +304,10 @@ public class App {
     {
         String population = "";
         try {
+            if(city == null ||  city == " ")
+            {
+                return "-1";
+            }
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
@@ -361,6 +384,10 @@ public class App {
     private ArrayList<City> getTopCitiesByPopulation(int amount) {
         try
         {
+            if( amount == 0 )
+            {
+                return null;
+            }
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
@@ -400,6 +427,10 @@ public class App {
     private ArrayList<City> getCitiesByPopulationInContinent(String continent)
     {
         try {
+            if(continent == null ||  continent == " ")
+            {
+                return null;
+            }
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
@@ -524,9 +555,13 @@ public class App {
      * @param amount The number of cities to produce
      * @return A list of x amount of cities in the region
      */
-    private ArrayList<City> getCitiesByPopulationInRegion(String region, int amount)
+    private ArrayList<City> getCitiesByPopulationInRegion(String region, int limit)
     {
         try {
+            if(region == null || region == " " || limit == 0)
+            {
+                return null;
+            }
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
@@ -535,7 +570,7 @@ public class App {
                     + "FROM city JOIN country ON (city.CountryCode=country.Code) "
                     + "WHERE country.Region = '" + region
                     + "' ORDER BY city.Population DESC "
-                    + "LIMIT " + amount + ";";
+                    + "LIMIT " + limit+ ";";
 
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -569,6 +604,8 @@ public class App {
     private ArrayList<City> getCitiesByPopulationInCountry(String country)
     {
         try {
+            if(country == null || country == " ")
+                return null;
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
@@ -608,9 +645,11 @@ public class App {
      * @param amount The number of cities to produce
      * @return A list of x amount of cities in the country
      */
-    private ArrayList<City> getCitiesByPopulationInCountry(String country, int amount)
+    private ArrayList<City> getCitiesByPopulationInCountry(String country, int limit)
     {
         try {
+            if(country == null || country == "")
+                return null;
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
@@ -619,7 +658,7 @@ public class App {
                     + "FROM city JOIN country ON (city.CountryCode=country.Code) "
                     + "WHERE country.Name = '" + country
                     + "' ORDER BY city.Population DESC "
-                    + "LIMIT " + amount + ";";
+                    + "LIMIT " + limit + ";";
 
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
