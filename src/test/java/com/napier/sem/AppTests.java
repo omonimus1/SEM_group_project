@@ -1,4 +1,5 @@
 package com.napier.sem;
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -15,20 +16,36 @@ public class AppTests {
 
 
     @Test
-    void printPopulationOfCountryIfNull() { app.getPopulationOfACountry(null); }
+    void printPopulationOfCountryIfNull()
+    {
+        Assert.assertEquals(  "If the Country is null, the population is null"  ,null ,  app.getPopulationOfACountry(null));
+    }
+
 
     @Test
-    void printPopulationOfCountry() { app.getPopulationOfACountry("Italy"); }
+    void testPopulationInCityIfNull()
+    {
+        Assert.assertEquals("If the name of city is null, the population must be null" , null , app.getPopulationOfACity(null));
+
+    }
+
+    @Test
+    void testRegionNull() {
+        Assert.assertEquals("Region Population must be null", null, app.getPopulationOfRegion(null));
+    }
 
 
     @Test
-    void testPrintPopulationInCityIfNull() {  }
+    void testDistrictIfNull() {
+        Assert.assertEquals("District Population must be null", null, app.getPopulationDistrict(null));
+    }
+
 
     @Test
-    void printPopulationInDistrictIfNull() { }
-
-    @Test
-    void testPopulationInContinentIfNull() { }
+    void testPopulationInContinentIfNull()
+    {
+        Assert.assertEquals("Cntinent Population must be null", null, app.getPopulationOfAContinent(null));
+    }
 
     void testGlobalPopulationIfNull() {}
 

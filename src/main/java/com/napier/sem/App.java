@@ -96,7 +96,7 @@ public class App {
      * getPopulationOfTheWorld()
      * @return the total world population
      * */
-    private String getPopulationOfTheWorld()
+    public String getPopulationOfTheWorld()
     {
         String population = "";
         try {
@@ -132,14 +132,14 @@ public class App {
      * @return the total population in a specific Continent
      * */
 
-    private String getPopulationOfAContinent(String continent)
+    public String getPopulationOfAContinent(String continent)
     {
         System.out.println("Starting continent function");
         String population = "";
         try {
             if(continent == null ||  continent == " ")
             {
-                return "-1";
+                return null;
             }
 
             // Create an SQL Statement
@@ -183,7 +183,7 @@ public class App {
 
             if(country == null ||  country == " ")
             {
-                return "-1";
+                return null;
             }
 
             // Create an SQL Statement
@@ -220,7 +220,7 @@ public class App {
      * @param  region
      * @return the total population in a specific region
      * */
-    private String getPopulationOfRegion (String region)
+    public String getPopulationOfRegion (String region)
     {
         String population = "";
         try {
@@ -258,7 +258,7 @@ public class App {
 
      * @return the total population in a specific district
      * @param district*/
-    private String getPopulationDistrict(String district)
+    public String getPopulationDistrict(String district)
     {
         String population = "";
         try {
@@ -300,7 +300,7 @@ public class App {
      * @return the total population in a specific Continent
      * */
 
-    private String getPopulationOfACity (String city)
+    public String getPopulationOfACity (String city)
     {
         String population = "";
         try {
@@ -506,7 +506,7 @@ public class App {
         catch(Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get list of top "+ amount +" cities by population in the continent");
+            System.out.println("Failed to get list of top "+ limit +" cities by population in the continent");
             return null;
         }
     }
@@ -556,7 +556,7 @@ public class App {
     /**
      * Gets x cities in the specified region, where x is provided by the user
      * @param region The string name of the region
-     * @param amount The number of cities to produce
+     * @param limit The number of cities to produce
      * @return A list of x amount of cities in the region
      */
     private ArrayList<City> getCitiesByPopulationInRegion(String region, int limit)
@@ -595,7 +595,7 @@ public class App {
         catch(Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get list of top "+ amount +" cities by population in the region");
+            System.out.println("Failed to get list of top "+ limit +" cities by population in the region");
             return null;
         }
     }
@@ -683,7 +683,7 @@ public class App {
         catch(Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get list of top "+ amount +" cities by population in the country");
+            System.out.println("Failed to get list of top "+ limit +" cities by population in the country");
             return null;
         }
     }
@@ -771,7 +771,7 @@ public class App {
         catch(Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get list of top "+ amount +" cities by population in the district");
+            System.out.println("Failed to get list of top "+ " cities by population in the district");
             return null;
         }
     }
@@ -875,7 +875,7 @@ public class App {
             return capCityList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get list of " + amount + " capital cities by population");
+            System.out.println("Failed to get list of capital cities by population");
             return null;
         }
     }
