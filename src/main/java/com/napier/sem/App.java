@@ -268,7 +268,7 @@ public class App {
             Statement stmt = con.createStatement();
 
             // Create String for SQL statement
-            String strSelect = "SELECT Code, Name, Continent, Region, Population, Capital " +
+            String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital " +
                     "FROM country " +
                     "WHERE region =" + region +
                     " ORDER BY Population DESC; ";
@@ -342,14 +342,21 @@ public class App {
      * Prints a list of capital cities
      * @paramt capCities The list of capital cities to print
      */
-    private void printCountries(ArrayList<Country> countries)
+    public void printCountries(ArrayList<Country> countries)
     {
+        //Check countries is not null
+        if(countries == null){
+            System.out.println("No countries");
+            return;
+        }
         // Print header for the capital cities
         System.out.println(String.format("%-5s %-50s %-20s %-50s %-8s %-30s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
 
         // Loop over all capital cities in the list
         for (Country country : countries)
         {
+            if(country == null)
+                continue;
             String countries_string =
                     String.format("%-5s %-50s %-20s %-50s %-8s %-30s",
                             country.getCode(), country.getName(), country.getContinent(), country.getRegion(),  country.getPopulation(), country.getCapital());
@@ -1280,9 +1287,118 @@ public class App {
             System.out.println(capCity_string);
         }
     }
+    /**
+    Get the population of people living in cities and people not living in cities
+     * in each continent
+     */
 
+    public String getPopulationInCitiesAndNotInCitiesContinent(String continent){
+
+        String peopleLivingInCities = "People living in cities are " ;
+
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String getQuery = "SELECT country.Name, country.Population AS living_in, "
+            +"( country.Population - (SUM(city.Population)) )AS Not_living_in "
+                    + "FROM country "
+            +"JOIN city ON city.CountryCode = country.Code "
+                    + "WHERE continent = " + continent
+            + "GROUP BY country.Name, country.Population;";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(getQuery);
+            while(rset.next())
+            {
+                peopleLivingInCities += (rset.getInt("living_in")) + ", while people not living in the cities are " + (rset.getInt("Not_living_in"));;
+
+
+            }
+            return peopleLivingInCities;
+
+    } catch (Exception e) {
+           System.out.println(e.getMessage());
+            System.out.println("Error getting the people living and not living in the city");
+        }
+        return peopleLivingInCities;
+
+    }
+    /**
+     Get the population of people living in cities and people not living in cities
+     * in each region
+     */
+    public String getPopulationInCitiesAndNotInCitiesRegion(String region){
+
+        String peopleLivingInCities = "People living in cities are " ;
+
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String getQuery = "SELECT country.Name, country.Population AS living_in, "
+                    +"( country.Population - (SUM(city.Population)) )AS Not_living_in "
+                    + "FROM country "
+                    +"JOIN city ON city.CountryCode = country.Code "
+                    + "WHERE region = " + region
+                    + "GROUP BY country.Name, country.Population;";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(getQuery);
+            while(rset.next())
+            {
+                peopleLivingInCities += (rset.getInt("living_in")) + ", while people not living in the cities are " + (rset.getInt("Not_living_in")) + "in region " + region;
+
+            }
+            return peopleLivingInCities;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error getting the people living and not living in the city");
+        }
+        return peopleLivingInCities;
+
+    }
 
     /**
+     Get the population of people living in cities and people not living in cities
+     * in each country
+     */
+    public String getPopulationInCitiesAndNotInCitiesCountry(String country){
+
+        String peopleLivingInCities = "People living in cities are " ;
+
+        try {
+            // Create an SQL Statement
+            Statement stmt = con.createStatement();
+
+            // Create String for SQL statement
+            String getQuery = "SELECT country.Name, country.Population AS living_in, "
+                    +"( country.Population - (SUM(city.Population)) )AS Not_living_in "
+                    + "FROM country "
+                    +"JOIN city ON city.CountryCode = country.Code "
+                    + "WHERE country = " + country
+                    + "GROUP BY country.Name, country.Population;";
+
+            // Execute SQL Statement
+            ResultSet rset = stmt.executeQuery(getQuery);
+            while(rset.next())
+            {
+                peopleLivingInCities += (rset.getInt("living_in")) + ", while people not living in the cities are " + (rset.getInt("Not_living_in")) + "in region " + country;
+
+            }
+            return peopleLivingInCities;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error getting the people living and not living in the city");
+        }
+        return peopleLivingInCities;
+
+    }
+        /**
      * Gets the number of people speaking and the world percentage of English, Chinese, Spanish, Hindi and Arabic
      * @return ArrayList of CountryLanguages of English, Chinese, Spanish, Hindi and Arabic
      */

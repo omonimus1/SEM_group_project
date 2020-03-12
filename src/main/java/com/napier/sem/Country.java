@@ -26,6 +26,12 @@ public class Country {
     private String code2;
     private String language;
 
+
+    Country(){}
+
+    Country(String name){
+
+    }
     //Get and Set method for code
     public String getCode()
     {

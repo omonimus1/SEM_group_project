@@ -18,6 +18,19 @@ public class AppTests {
     }
 
     @Test
+    void getCountryTest(){
+        Country cnt = new Country("Italy");
+     assertEquals(cnt.getName(), "Italy");
+     ArrayList<Country> countries = new ArrayList<>();
+     countries.add(cnt);
+     app.printCountries(countries);
+     assertEquals(cnt.getName(), "null");
+     countries.add(cnt);
+     app.printCountries(countries);
+    }
+
+
+    @Test
     void printCitiesTestNull()
     {
         app.printCities(null);
@@ -38,5 +51,10 @@ public class AppTests {
         ArrayList<City> cities = new ArrayList<City>();
         cities.add(null);
         app.printCities(cities);
+    }
+
+    @Test
+    void getPeopleLinvingInCitiesorNotTest(){
+
     }
 }
