@@ -995,14 +995,22 @@ public class App {
      * Prints a list of cities
      * @paramt cities The list of cities to print
      */
-    private void printCities(ArrayList<City> cities)
+    public void printCities(ArrayList<City> cities)
     {
+        // Check cities is not null
+        if (cities == null)
+        {
+            System.out.println("No cities");
+            return;
+        }
         // Print header for the cities
         System.out.println(String.format("%-70s %-50s %-40s %-8s", "Name", "Country", "District", "Population"));
 
         // Loop over all cities in the list
         for (City city : cities)
         {
+            if (city == null)
+                continue;
             String city_string =
                     String.format("%-70s %-50s %-40s %-8s",
                             city.getName(), city.getCountry(), city.getDistrict(), city.getPopulation());
