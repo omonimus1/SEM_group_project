@@ -1290,114 +1290,134 @@ public class App {
     /**
     Get the population of people living in cities and people not living in cities
      * in each continent
+     * @return ArrayList of Continent, the amount of people living and cities and not living in the cities
      */
 
-    public String getPopulationInCitiesAndNotInCitiesContinent(String continent){
-
-        String peopleLivingInCities = "People living in cities are " ;
-
+    public ArrayList<Continent> getPopulationInCitiesAndNotInCitiesContinent()
+    {
         try {
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
             // Create String for SQL statement
-            String getQuery = "SELECT country.Name, country.Population AS living_in, "
-            +"( country.Population - (SUM(city.Population)) )AS Not_living_in "
-                    + "FROM country "
-            +"JOIN city ON city.CountryCode = country.Code "
-                    + "WHERE continent = " + continent
-            + "GROUP BY country.Name, country.Population;";
+            String strSelect = " ";
 
             // Execute SQL Statement
-            ResultSet rset = stmt.executeQuery(getQuery);
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<Continent> populationInCitiesAndNotInCitiesContinent = new ArrayList<Continent>();
             while(rset.next())
             {
-                peopleLivingInCities += (rset.getInt("living_in")) + ", while people not living in the cities are " + (rset.getInt("Not_living_in"));;
-
-
+                Continent cont = new Continent();
+                cont.setName(rset.getString("country.Continent"));
+                cont.setPopulation(rset.getInt(""));
+                cont.setPercCityPopulation(rset.getString(""));
+                cont.setPercCountrysidePopulation(rset.getString(""));
+                populationInCitiesAndNotInCitiesContinent.add(cont);
             }
-            return peopleLivingInCities;
+            return populationInCitiesAndNotInCitiesContinent;
 
     } catch (Exception e) {
-           System.out.println(e.getMessage());
-            System.out.println("Error getting the people living and not living in the city");
+            System.out.println(e.getMessage());
+            System.out.println("Error getting a list with the people living and not living in cities in each continent");
+            return null;
         }
-        return peopleLivingInCities;
-
     }
+
+    /**
+     * Prints the name, population, city population, country population and their percentages stored in the supplied list
+     * @param populationListOfPeople
+     */
+    private void printPopulationLivingInCitiesOrNotLivingInCities(ArrayList<Continent> populationListOfPeople)
+    {
+        // Print header for the capital cities
+        System.out.println(String.format("%-20s %-15s %-8s %-8s", "Name", "Population", "City Population", "Country Population"));
+
+        // Loop over all capital cities in the list
+        for (Continent cont : populationListOfPeople)
+        {
+            String population_string =
+                    String.format("%-20s %-15s %-8s %-8s",
+                            cont.getName(), cont.getPopulation(), cont.getPercCityPopulation(), cont.getPercCountrysidePopulation());
+            System.out.println(population_string);
+        }
+    }
+
     /**
      Get the population of people living in cities and people not living in cities
      * in each region
+     * @return ArrayList of Region, the amount of people living and cities and not living in the cities
      */
-    public String getPopulationInCitiesAndNotInCitiesRegion(String region){
-
-        String peopleLivingInCities = "People living in cities are " ;
-
+    public ArrayList<Region> getPopulationInCitiesAndNotInCitiesRegion()
+    {
         try {
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
             // Create String for SQL statement
-            String getQuery = "SELECT country.Name, country.Population AS living_in, "
-                    +"( country.Population - (SUM(city.Population)) )AS Not_living_in "
-                    + "FROM country "
-                    +"JOIN city ON city.CountryCode = country.Code "
-                    + "WHERE region = " + region
-                    + "GROUP BY country.Name, country.Population;";
+            String strSelect = " ";
 
             // Execute SQL Statement
-            ResultSet rset = stmt.executeQuery(getQuery);
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<Region> populationInCitiesAndNotInCitiesRegion = new ArrayList<Region>();
             while(rset.next())
             {
-                peopleLivingInCities += (rset.getInt("living_in")) + ", while people not living in the cities are " + (rset.getInt("Not_living_in")) + "in region " + region;
-
+                Region reg = new Region();
+                reg.setName(rset.getString("country.Region"));
+                reg.setPopulation(rset.getInt(""));
+                reg.setPercCityPopulation(rset.getString(""));
+                reg.setPercCountrysidePopulation(rset.getString(""));
+                populationInCitiesAndNotInCitiesRegion.add(reg);
             }
-            return peopleLivingInCities;
+            return populationInCitiesAndNotInCitiesRegion;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Error getting the people living and not living in the city");
+            System.out.println("Error getting a list with the people living and not living in cities in each region");
+            return null;
         }
-        return peopleLivingInCities;
-
     }
 
     /**
      Get the population of people living in cities and people not living in cities
      * in each country
+     * @return ArrayList of Country, the amount of people living and cities and not living in the cities
      */
-    public String getPopulationInCitiesAndNotInCitiesCountry(String country){
-
-        String peopleLivingInCities = "People living in cities are " ;
-
+    public ArrayList<Country> getPopulationInCitiesAndNotInCitiesCountry()
+    {
         try {
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
             // Create String for SQL statement
-            String getQuery = "SELECT country.Name, country.Population AS living_in, "
-                    +"( country.Population - (SUM(city.Population)) )AS Not_living_in "
-                    + "FROM country "
-                    +"JOIN city ON city.CountryCode = country.Code "
-                    + "WHERE country = " + country
-                    + "GROUP BY country.Name, country.Population;";
+            String strSelect = " ";
 
             // Execute SQL Statement
-            ResultSet rset = stmt.executeQuery(getQuery);
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            ArrayList<Country> populationInCitiesAndNotInCitiesCountry = new ArrayList<Country>();
             while(rset.next())
             {
-                peopleLivingInCities += (rset.getInt("living_in")) + ", while people not living in the cities are " + (rset.getInt("Not_living_in")) + "in region " + country;
-
+                Country count = new Country();
+                count.setName(rset.getString("country.Name"));
+                count.setPopulation(rset.getInt(""));
+                count.setPercCityPopulation(rset.getString(""));
+                count.setPercCountrysidePopulation(rset.getString(""));
+                populationInCitiesAndNotInCitiesCountry.add(count);
             }
-            return peopleLivingInCities;
+            return populationInCitiesAndNotInCitiesCountry;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Error getting the people living and not living in the city");
+            System.out.println("Error getting a list with the people living and not living in cities in each country");
+            return null;
         }
-        return peopleLivingInCities;
-
     }
+
         /**
      * Gets the number of people speaking and the world percentage of English, Chinese, Spanish, Hindi and Arabic
      * @return ArrayList of CountryLanguages of English, Chinese, Spanish, Hindi and Arabic

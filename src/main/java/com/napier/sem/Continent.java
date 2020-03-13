@@ -5,8 +5,8 @@ public class Continent {
     private int population;
     private int cityPopulation;
     private int countrysidePopulation;
-    private double percCityPopulation;
-    private double percCountrysidePopulation;
+    private String percCityPopulation;
+    private String percCountrysidePopulation;
 
     public String getName() {
         return name;
@@ -40,19 +40,19 @@ public class Continent {
         this.countrysidePopulation = countrysidePopulation;
     }
 
-    public double getPercCityPopulation() {
+    public String getPercCityPopulation() {
         return percCityPopulation;
     }
 
-    public void setPercCityPopulation(double percCityPopulation) {
+    public void setPercCityPopulation(String percCityPopulation) {
         this.percCityPopulation = percCityPopulation;
     }
 
-    public double getPercCountrysidePopulation() {
+    public String getPercCountrysidePopulation() {
         return percCountrysidePopulation;
     }
 
-    public void setPercCountrysidePopulation(double percCountrysidePopulation) {
+    public void setPercCountrysidePopulation(String percCountrysidePopulation) {
         this.percCountrysidePopulation = percCountrysidePopulation;
     }
 }
