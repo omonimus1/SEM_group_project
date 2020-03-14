@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Authors: Davide Pollicino, Magdalena Calkova, Simona Georgieva, Simone Piazzini
  * COURSE: Software Engineering Methods (SET08103)
- * Last Modified: 29/02/2020
+ * Last Modified: 14/03/2020
  * This application is designed for a company to retrieve information about countries related to their population, capital city, language etc.
  */
 
@@ -14,15 +14,21 @@ public class App {
 
     public static void main(String[] args)
     {
-        // Create new Application
+        //Create an instance of an App
         App a = new App();
 
-        // Connect to database
-        a.connect("localhost:33060");
+        //Connect to database based on the number of arguments provided
+        if (args.length < 1)
+        {
+            a.connect("localhost:3306");
+        }
+        else
+        {
+            a.connect(args[0]);
+        }
 
-        System.out.println("We are runnin...");
 
-        // Disconnect from database
+        //Disconnect from database
         a.disconnect();
 
     }

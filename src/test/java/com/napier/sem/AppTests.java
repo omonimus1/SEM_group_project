@@ -17,18 +17,6 @@ public class AppTests {
         app = new App();
     }
 
-    @Test
-    void getCountryTest(){
-        Country cnt = new Country("Italy");
-     assertEquals(cnt.getName(), "Italy");
-     ArrayList<Country> countries = new ArrayList<>();
-     countries.add(cnt);
-     app.printCountries(countries);
-     assertEquals(cnt.getName(), "null");
-     countries.add(cnt);
-     app.printCountries(countries);
-    }
-
 
     @Test
     void printCitiesTestNull()
