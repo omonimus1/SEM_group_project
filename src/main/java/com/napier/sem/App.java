@@ -1322,7 +1322,9 @@ public class App {
                 Continent cont = new Continent();
                 cont.setName(rset.getString("country.Continent"));
                 cont.setPopulation(rset.getInt(""));
+                cont.setCityPopulation(rset.getInt(""));
                 cont.setPercCityPopulation(rset.getString(""));
+                cont.setCountrysidePopulation(rset.getInt(""));
                 cont.setPercCountrysidePopulation(rset.getString(""));
                 populationInCitiesAndNotInCitiesContinent.add(cont);
             }
@@ -1336,20 +1338,20 @@ public class App {
     }
 
     /**
-     * Prints the name, population, city population, country population and their percentages stored in the supplied list
-     * @param populationListOfPeople
+     * Prints the name, population, city population, percent of city population, countryside population, percent of countryside population and their percentages stored in the supplied list
+     * @param populationListOfPeople The list of people to print
      */
-    private void printPopulationLivingInCitiesOrNotLivingInCities(ArrayList<Continent> populationListOfPeople)
+    private void printPopulationLivingInCitiesOrNotLivingInCitiesContinent(ArrayList<Continent> populationListOfPeople)
     {
         // Print header for the capital cities
-        System.out.println(String.format("%-20s %-15s %-8s %-8s", "Name", "Population", "City Population", "Country Population"));
+        System.out.println(String.format("%-20s %-15s %-8s %-5s %-8s %-5s", "Name", "Population", "City Population", "Percent of city population", "Countryside Population", "Percent of countryside population"));
 
         // Loop over all capital cities in the list
         for (Continent cont : populationListOfPeople)
         {
             String population_string =
-                    String.format("%-20s %-15s %-8s %-8s",
-                            cont.getName(), cont.getPopulation(), cont.getPercCityPopulation(), cont.getPercCountrysidePopulation());
+                    String.format("%-20s %-15s %-8s %-5s %-8s %-5s",
+                            cont.getName(), cont.getPopulation(), cont.getCityPopulation(), cont.getPercCityPopulation(), cont.getCountrysidePopulation(), cont.getPercCountrysidePopulation());
             System.out.println(population_string);
         }
     }
@@ -1388,7 +1390,9 @@ public class App {
                 Region reg = new Region();
                 reg.setName(rset.getString("region.Region"));
                 reg.setPopulation(rset.getInt("country.Population"));
+                reg.setCityPopulation(rset.getInt(""));
                 reg.setPercCityPopulation(rset.getString("City Living Perc"));
+                reg.setCountrySidePopulation(rset.getInt(""));
                 reg.setPercCountrysidePopulation(rset.getString("Not Living In Cities Perc"));
                 populationInCitiesAndNotInCitiesRegion.add(reg);
             }
@@ -1401,8 +1405,24 @@ public class App {
         }
     }
 
+    /**
+     * Prints the name, population, city population, percent of city population, countryside population, percent of countryside population and their percentages stored in the supplied list
+     * @param populationListOfPeople The list of people to print
+     */
+    private void printPopulationLivingInCitiesOrNotLivingInCitiesRegion(ArrayList<Region> populationListOfPeople)
+    {
+        // Print header for the capital cities
+        System.out.println(String.format("%-20s %-15s %-8s %-5s %-8s %-5s", "Name", "Population", "City Population", "Percent of city population", "Countryside Population", "Percent of countryside population"));
 
-
+        // Loop over all capital cities in the list
+        for (Region reg : populationListOfPeople)
+        {
+            String population_string =
+                    String.format("%-20s %-15s %-8s %-5s %-8s %-5s",
+                            reg.getName(), reg.getPopulation(), reg.getCityPopulation(), reg.getPercCityPopulation(), reg.getCountrySidePopulation(), reg.getPercCountrysidePopulation());
+            System.out.println(population_string);
+        }
+    }
 
     /**
      Get the population of people living in cities and people not living in cities
@@ -1431,12 +1451,14 @@ public class App {
             ArrayList<Country> populationInCitiesAndNotInCitiesCountry = new ArrayList<Country>();
             while(rset.next())
             {
-                Country count = new Country();
-                count.setName(rset.getString("country.Name"));
-                count.setPopulation(rset.getInt("People Living In Cities"));
-                count.setPercCityPopulation(rset.getString("City Living Perc"));
-                count.setPercCountrysidePopulation(rset.getString("Not Living In Cities Perc"));
-                populationInCitiesAndNotInCitiesCountry.add(count);
+                Country coun = new Country();
+                coun.setName(rset.getString("country.Name"));
+                coun.setPopulation(rset.getInt("People Living In Cities"));
+                coun.setCityPopulation((rset.getInt("")));
+                coun.setPercCityPopulation(rset.getString("City Living Perc"));
+                coun.setCountrysidePopulation(rset.getInt(""));
+                coun.setPercCountrysidePopulation(rset.getString("Not Living In Cities Perc"));
+                populationInCitiesAndNotInCitiesCountry.add(coun);
             }
             return populationInCitiesAndNotInCitiesCountry;
 
@@ -1447,24 +1469,20 @@ public class App {
         }
     }
     /**
-     * Prints the name, population, city population, country population and their percentages stored in the supplied list
-     * @param populationListOfPeople
-
-     ****** To be checked *****
-
+     * Prints the name, population, city population, percent of city population, countryside population, percent of countryside population and their percentages stored in the supplied list
+     * @param populationListOfPeople The list of people to print
      */
-
-    private void printPopulationLivingInCitiesOrNotLivingInCitiesForCountry(ArrayList<Country> populationListOfPeople)
+    private void printPopulationLivingInCitiesOrNotLivingInCitiesCoutry(ArrayList<Country> populationListOfPeople)
     {
         // Print header for the capital cities
-        System.out.println(String.format("%-20s %-15s %-8s %-8s", "Name", "Population", "City Population", "Country Population"));
+        System.out.println(String.format("%-20s %-15s %-8s %-5s %-8s %-5s", "Name", "Population", "City Population", "Percent of city population", "Countryside Population", "Percent of countryside population"));
 
         // Loop over all capital cities in the list
         for (Country country : populationListOfPeople)
         {
             String population_string =
-                    String.format("%-20s %-15s %-8s %-8s",
-                            country.getName(), country.getPopulation(), country.getPercCityPopulation(), country.getPercCountrysidePopulation());
+                    String.format("%-20s %-15s %-8s %-5s %-8s %-5s",
+                            country.getName(), country.getPopulation(), country.getCityPopulation(), country.getPercCityPopulation(), country.getCountrysidePopulation(), country.getPercCountrysidePopulation());
             System.out.println(population_string);
         }
     }
