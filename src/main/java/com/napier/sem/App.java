@@ -32,7 +32,7 @@ public class App {
 
     /** Connect(): Open the connection with the SQL Database
       */
-    private void connect() {
+    private void connect(String location) {
         try
         {
             // Load Database driver
@@ -1263,7 +1263,7 @@ public class App {
      * Prints a list of capital cities
      * @paramt capCities The list of capital cities to print
      */
-    private void printCapitalCities(ArrayList<City> capCities)
+    public void printCapitalCities(ArrayList<City> capCities)
     {
 
         //Check if the provided list is empty
@@ -1542,7 +1542,7 @@ public class App {
      * Prints the name, number of people speaking and the world percentage of CountryLanguages stored in the supplied list
      * @param languageList the list of CountryLanguage to display contents of
      */
-    private void printFiveLanguages(ArrayList<CountryLanguage> languageList)
+    public void printFiveLanguages(ArrayList<CountryLanguage> languageList)
     {
         //Check if the provided list is empty
         if (languageList == null)

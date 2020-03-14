@@ -62,14 +62,14 @@ public class AppTests {
     @Test
     void printCapitalCitiesTestEmpty()
     {
-        ArrayList<Cities> cities = new ArrayList<Cities>();
+        ArrayList<City> cities = new ArrayList<City>();
         app.printCapitalCities(cities);
     }
     //Test for printCapitalCities() if the provided list contains an empty city
     @Test
     void printCapitalCitiesTestContainsNull()
     {
-        ArrayList<Cities> cities = new ArrayList<Cities>();
+        ArrayList<City> cities = new ArrayList<City>();
         cities.add(null);
         app.printCapitalCities(cities);
     }
@@ -77,7 +77,7 @@ public class AppTests {
     @Test
     void printCapitalCitiesTest()
     {
-        ArrayList<Cities> cities = new ArrayList<Cities>();
+        ArrayList<City> cities = new ArrayList<City>();
         City city = new City();
         city.setName("Old Town");
         city.setCountry("Countea");
