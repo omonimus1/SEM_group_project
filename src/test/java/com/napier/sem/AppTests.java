@@ -57,4 +57,61 @@ public class AppTests {
     void getPeopleLinvingInCitiesorNotTest(){
 
     }
+
+    //Test for printCapitalCities() if the provided list is NULL
+    @Test
+    void printCapitalCitiesTestEmpty()
+    {
+        ArrayList<Cities> cities = new ArrayList<Cities>();
+        app.printCapitalCities(cities);
+    }
+    //Test for printCapitalCities() if the provided list contains an empty city
+    @Test
+    void printCapitalCitiesTestContainsNull()
+    {
+        ArrayList<Cities> cities = new ArrayList<Cities>();
+        cities.add(null);
+        app.printCapitalCities(cities);
+    }
+    //Test for printCapitalCities() if the provided list contains a normal instance of a city
+    @Test
+    void printCapitalCitiesTest()
+    {
+        ArrayList<Cities> cities = new ArrayList<Cities>();
+        City city = new City();
+        city.setName("Old Town");
+        city.setCountry("Countea");
+        city.setDistrict("Distrack");
+        city.setPopulation(10);
+        cities.add(city);
+        app.printCapitalCities(cities);
+    }
+
+    //Test for printFiveLanguages() if the provided list is NULL
+    @Test
+    void printFiveLanguagesTestEmpty()
+    {
+        ArrayList<CountryLanguage> counLangs = new ArrayList<CountryLanguage>();
+        app.printFiveLanguages(counLangs);
+    }
+    //Test for printFiveLanguages() if the provided list contains an empty country language
+    @Test
+    void printFiveLanguagesTestContainsNull()
+    {
+        ArrayList<CountryLanguage> counLangs = new ArrayList<CountryLanguage>();
+        counLangs.add(null);
+        app.printFiveLanguages(counLangs);
+    }
+    //Test for printFiveLanguages() if the provided list contains a normal instance of a country language
+    @Test
+    void printFiveLanguagesTest()
+    {
+        ArrayList<CountryLanguage> counLangs = new ArrayList<CountryLanguage>();
+        CountryLanguage lang = new CountryLanguage();
+        lang.setLanguage("Old Tongue");
+        lang.setWorldPercentage("0.000 %");
+        lang.setPopulation(2);
+        counLangs.add(lang);
+        app.printFiveLanguages(counLangs);
+    }
 }

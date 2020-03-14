@@ -18,28 +18,9 @@ public class App {
         App a = new App();
 
         // Connect to database
-        a.connect();
+        a.connect("localhost:33060");
 
-        ArrayList<CountryLanguage> clList = new ArrayList<CountryLanguage>();
-        clList=a.getFiveLanguages();
-        a.printFiveLanguages(clList);
-
-        // Method testing
-        String world_population = a.getPopulationOfTheWorld();
-        String continent_population = a.getPopulationOfAContinent("Oceania");
-        String country_population = a.getPopulationOfACountry("Italy");
-        String city_population = a.getPopulationOfACity("Roma");
-        String district_population = a.getPopulationDistrict("Texas");
-        String region_population = a.getPopulationOfRegion("South America");
-
-        // Printing Result of the tests
-        System.out.println("Population of the world: " + world_population);
-        System.out.println("Population of the Continent Ocenaia : " + continent_population);
-        System.out.println("Population of the country Italy: " + country_population);
-        System.out.println("Population of the city Roma: " + city_population);
-        System.out.println("Population of the District California: " + district_population);
-        System.out.println("Population of the Region South America: " + region_population);
-
+        System.out.println("We are runnin...");
 
         // Disconnect from database
         a.disconnect();
@@ -52,28 +33,37 @@ public class App {
     /** Connect(): Open the connection with the SQL Database
       */
     private void connect() {
-        try {
+        try
+        {
             // Load Database driver
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.out.println("The SQL driver couldn't be loaded...");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }
+        catch (ClassNotFoundException e)
+        {
+            System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
 
         int retries = 10;
-        for (int i = 0; i < retries; ++i) {
+        for (int i = 0; i < retries; ++i)
+        {
             System.out.println("Connecting to database...");
-            try {
+            try
+            {
                 // Wait a bit for db to start
-                Thread.sleep(3000);
+                Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/employees?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Connection was a success!");
                 break;
-            } catch (SQLException sqle) {
-                System.out.println("Failed to connect to the database. (Attempt: " + Integer.toString(i) + ")" );
+            }
+            catch (SQLException sqle)
+            {
+                System.out.println("Failed to connect to database with an attempt: " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
-            } catch (InterruptedException ie) {
+            }
+            catch (InterruptedException ie)
+            {
                 System.out.println("Thread interrupted...");
             }
         }
@@ -1275,12 +1265,25 @@ public class App {
      */
     private void printCapitalCities(ArrayList<City> capCities)
     {
+
+        //Check if the provided list is empty
+        if (capCities == null)
+        {
+            System.out.println("No capital cities list...");
+            return;
+        }
+
         // Print header for the capital cities
         System.out.println(String.format("%-60s %-50s %-8s", "Name", "Country", "Population"));
 
         // Loop over all capital cities in the list
         for (City capCity : capCities)
         {
+            //If there is an empty city, continue
+            if(capCity == null)
+            {
+                continue;
+            }
             String capCity_string =
                     String.format("%-60s %-50s %-8s",
                             capCity.getName(), capCity.getCountry(), capCity.getPopulation());
@@ -1541,12 +1544,25 @@ public class App {
      */
     private void printFiveLanguages(ArrayList<CountryLanguage> languageList)
     {
+        //Check if the provided list is empty
+        if (languageList == null)
+        {
+            System.out.println("No languages list...");
+            return;
+        }
+
         // Print header for the capital cities
         System.out.println(String.format("%-20s %-15s %-8s", "Language", "Population", "World Percentage"));
 
         // Loop over all capital cities in the list
         for (CountryLanguage cl : languageList)
         {
+            //If there is an empty CountryLanguage, continue
+            if(cl == null)
+            {
+                continue;
+            }
+
             String language_string =
                     String.format("%-20s %-15s %-8s",
                             cl.getLanguage(), cl.getPopulation(), cl.getWorldPercentage());
