@@ -27,6 +27,54 @@ public class App {
             a.connect(args[0]);
         }
 
+        //Five countries
+        System.out.println("Five languages list...");
+        ArrayList<CountryLanguage> langList = new ArrayList<CountryLanguage>();
+        langList = a.getFiveLanguages();
+        a.printFiveLanguages(langList);
+        System.out.println("\n");
+
+        //All world cap cities by population
+        System.out.println("All World Capital Cities list...");
+        ArrayList<City> allCityList = new ArrayList<City>();
+        allCityList = a.getAllCapitalCitiesByPopulation();
+        a.printCapitalCities(allCityList);
+        System.out.println("\n");
+
+        //All Continent cap cities by population
+        System.out.println("All Continent Capital Cities list...");
+        ArrayList<City> allCityListByContinent = new ArrayList<City>();
+        allCityListByContinent = a.getCapitalCitiesByPopulationInContinent("Europe");
+        a.printCapitalCities(allCityListByContinent);
+        System.out.println("\n");
+
+        //All Region cap cities by population
+        System.out.println("All Region Capital Cities list...");
+        ArrayList<City> allCityListByRegion = new ArrayList<City>();
+        allCityListByRegion = a.getCapitalCitiesByPopulationInRegion("Caribbean");
+        a.printCapitalCities(allCityListByRegion);
+        System.out.println("\n");
+
+        //Limit world cap cities by population
+        System.out.println("Limit World Capital Cities list...");
+        ArrayList<City> cityList = new ArrayList<City>();
+        cityList = a.getTopCapitalCitiesByPopulation(5);
+        a.printCapitalCities(cityList);
+        System.out.println("\n");
+
+        //Limit continent cap cities by population
+        System.out.println("Limit Continent Capital Cities list...");
+        ArrayList<City> cityListByContinent = new ArrayList<City>();
+        cityListByContinent = a.getCapitalCitiesByPopulationInContinent("Africa", 5);
+        a.printCapitalCities(cityListByContinent);
+        System.out.println("\n");
+
+        //Limit region cap cities by population
+        System.out.println("Limit Region Capital Cities list...");
+        ArrayList<City> cityListByRegion = new ArrayList<City>();
+        cityListByRegion = a.getCapitalCitiesByPopulationInRegion("Middle East", 5);
+        a.printCapitalCities(cityListByRegion);
+        System.out.println("\n");
 
         //Disconnect from database
         a.disconnect();
@@ -38,7 +86,7 @@ public class App {
 
     /** Connect(): Open the connection with the SQL Database
       */
-    private void connect(String location) {
+    public void connect(String location) {
         try
         {
             // Load Database driver
@@ -59,7 +107,7 @@ public class App {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://" + location + "/employees?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Connection was a success!");
                 break;
             }
@@ -79,7 +127,7 @@ public class App {
      * disconnect():  Close the connection to the SQL Databse
      * */
     //Disconnect from the MySQL database.
-    private void disconnect() {
+    public void disconnect() {
         if (con != null) {
             try {
                 // Close connection
@@ -90,7 +138,7 @@ public class App {
         }
     }
     /* Get all the countries in the world retrieved from the Database organised by largest population to smallest*/
-    private ArrayList<Country> getCountries()
+    public ArrayList<Country> getCountries()
     {
         try {
             // Create an SQL Statement
@@ -130,7 +178,7 @@ public class App {
     /* Generate report for a given number
     * of countries
     * */
-    private ArrayList<Country> getTopCountries(int n)
+    public ArrayList<Country> getTopCountries(int n)
     {
         try {
             // Create an SQL Statement
@@ -175,7 +223,7 @@ public class App {
      *
      *
      * */
-    private ArrayList<Country> getCountriesinContinent(String continent)
+    public ArrayList<Country> getCountriesinContinent(String continent)
     {
         try {
             // Create an SQL Statement
@@ -217,7 +265,7 @@ public class App {
      *  Generate report of top 'n' populated countries provided by the user
      *
      * */
-    private ArrayList<Country> getTopCountriesinContinent(String continent, int n)
+    public ArrayList<Country> getTopCountriesinContinent(String continent, int n)
     {
         try {
             // Create an SQL Statement
@@ -257,7 +305,7 @@ public class App {
     }
 
 
-    private ArrayList<Country> getCountriesinRegion(String region)
+    public ArrayList<Country> getCountriesinRegion(String region)
     {
         try {
             // Create an SQL Statement
@@ -296,7 +344,7 @@ public class App {
     }
 
 
-    private ArrayList<Country> getTopCountriesinRegion(String region, int n)
+    public ArrayList<Country> getTopCountriesinRegion(String region, int n)
     {
         try {
             // Create an SQL Statement
@@ -363,7 +411,7 @@ public class App {
      * getPopulationOfTheWorld()
      * @return the total world population
      * */
-    private String getPopulationOfTheWorld()
+    public String getPopulationOfTheWorld()
     {
         String population = "";
         try {
@@ -399,7 +447,7 @@ public class App {
      * @return the total population in a specific Continent
      * */
 
-    private String getPopulationOfAContinent(String continent)
+    public String getPopulationOfAContinent(String continent)
     {
         System.out.println("Starting continent function");
         String population = "";
@@ -438,7 +486,7 @@ public class App {
      * @return the total population in a specific country
      * */
 
-    private String getPopulationOfACountry(String country)
+    public String getPopulationOfACountry(String country)
     {
         String population = "";
         try {
@@ -476,7 +524,7 @@ public class App {
      * @param  region
      * @return the total population in a specific region
      * */
-    private String getPopulationOfRegion (String region)
+    public String getPopulationOfRegion (String region)
     {
         String population = "";
         try {
@@ -509,7 +557,7 @@ public class App {
 
      * @return the total population in a specific district
      * */
-    private String getPopulationDistrict(String district)
+    public String getPopulationDistrict(String district)
     {
         String population = "";
         System.out.println("Starting district function");
@@ -546,7 +594,7 @@ public class App {
      * @return the total population in a specific Continent
      * */
 
-    private String getPopulationOfACity (String city)
+    public String getPopulationOfACity (String city)
     {
         String population = "";
         try {
@@ -583,7 +631,7 @@ public class App {
      * Gets all cities in the world ordered by population from the largest to the smallest
      * @return A list of all cities with their country and population
      */
-    private ArrayList<City> getWorldCitiesByPopulation()
+    public ArrayList<City> getWorldCitiesByPopulation()
     {
         try {
             // Create an SQL Statement
@@ -623,7 +671,7 @@ public class App {
      * @param amount The number of cities to produce
      * @return A list of x amount of cities
      */
-    private ArrayList<City> getTopCitiesByPopulation(int amount) {
+    public ArrayList<City> getTopCitiesByPopulation(int amount) {
         try
         {
             // Create an SQL Statement
@@ -662,7 +710,7 @@ public class App {
      * @param continent string name of the continent
      * @return A list of all cities in the continent
      */
-    private ArrayList<City> getCitiesByPopulationInContinent(String continent)
+    public ArrayList<City> getCitiesByPopulationInContinent(String continent)
     {
         try {
             // Create an SQL Statement
@@ -704,7 +752,7 @@ public class App {
      * @param amount The number of cities to produce
      * @return A list of x amount of cities in the continent
      */
-    private ArrayList<City> getCitiesByPopulationInContinent(String continent, int amount)
+    public ArrayList<City> getCitiesByPopulationInContinent(String continent, int amount)
     {
         try {
             // Create an SQL Statement
@@ -746,7 +794,7 @@ public class App {
      * @param region string name of the region
      * @return A list of all cities in the region
      */
-    private ArrayList<City> getCitiesByPopulationInRegion(String region)
+    public ArrayList<City> getCitiesByPopulationInRegion(String region)
     {
         try {
             // Create an SQL Statement
@@ -789,7 +837,7 @@ public class App {
      * @param amount The number of cities to produce
      * @return A list of x amount of cities in the region
      */
-    private ArrayList<City> getCitiesByPopulationInRegion(String region, int amount)
+    public ArrayList<City> getCitiesByPopulationInRegion(String region, int amount)
     {
         try {
             // Create an SQL Statement
@@ -831,7 +879,7 @@ public class App {
      * @param country string name of the country
      * @return A list of all cities in the country
      */
-    private ArrayList<City> getCitiesByPopulationInCountry(String country)
+    public ArrayList<City> getCitiesByPopulationInCountry(String country)
     {
         try {
             // Create an SQL Statement
@@ -873,7 +921,7 @@ public class App {
      * @param amount The number of cities to produce
      * @return A list of x amount of cities in the country
      */
-    private ArrayList<City> getCitiesByPopulationInCountry(String country, int amount)
+    public ArrayList<City> getCitiesByPopulationInCountry(String country, int amount)
     {
         try {
             // Create an SQL Statement
@@ -914,7 +962,7 @@ public class App {
      * Gets all cities in the specified district by population from largest to smallest
      * @return A list of all cities in the district
      */
-    private ArrayList<City> getCitiesByPopulationInDistrict(String district)
+    public ArrayList<City> getCitiesByPopulationInDistrict(String district)
     {
         try {
             // Create an SQL Statement
@@ -956,7 +1004,7 @@ public class App {
      * @param amount The number of cities to produce
      * @return A list of x amount of cities in the district
      */
-    private ArrayList<City> getCitiesByPopulationInDistrict(String district, int amount)
+    public ArrayList<City> getCitiesByPopulationInDistrict(String district, int amount)
     {
         try
         {
@@ -1025,7 +1073,7 @@ public class App {
      * Gets all the capital cities in teh world ordered by population from the largest
      * @return A list of all capital cities with their country and population
      */
-    private ArrayList<City> getAllCapitalCitiesByPopulation()
+    public ArrayList<City> getAllCapitalCitiesByPopulation()
     {
         try {
             // Create an SQL Statement
@@ -1065,7 +1113,7 @@ public class App {
      * @param amount The number of capital cities to produce
      * @return A list of x amount of capital cities with their country and population
      */
-    private ArrayList<City> getTopCapitalCitiesByPopulation(int amount) {
+    public ArrayList<City> getTopCapitalCitiesByPopulation(int amount) {
         try {
             // Create an SQL Statement
             Statement stmt = con.createStatement();
@@ -1102,7 +1150,7 @@ public class App {
      * @param continent string name of the continent
      * @return A list of all capital cities in the continent
      */
-    private ArrayList<City> getCapitalCitiesByPopulationInContinent(String continent)
+    public ArrayList<City> getCapitalCitiesByPopulationInContinent(String continent)
     {
         try {
             // Create an SQL Statement
@@ -1144,7 +1192,7 @@ public class App {
      * @param amount The number of capital cities to produce
      * @return A list of x amount of capital cities in the continent
      */
-    private ArrayList<City> getCapitalCitiesByPopulationInContinent(String continent, int amount)
+    public ArrayList<City> getCapitalCitiesByPopulationInContinent(String continent, int amount)
     {
         try {
             // Create an SQL Statement
@@ -1186,7 +1234,7 @@ public class App {
      * @param region string name of the region
      * @return A list of all capital cities in the region
      */
-    private ArrayList<City> getCapitalCitiesByPopulationInRegion(String region)
+    public ArrayList<City> getCapitalCitiesByPopulationInRegion(String region)
     {
         try {
             // Create an SQL Statement
@@ -1228,7 +1276,7 @@ public class App {
      * @param amount The number of capital cities to produce
      * @return A list of all capital cities in the region
      */
-    private ArrayList<City> getCapitalCitiesByPopulationInRegion(String region, int amount)
+    public ArrayList<City> getCapitalCitiesByPopulationInRegion(String region, int amount)
     {
         try {
             // Create an SQL Statement
@@ -1296,211 +1344,12 @@ public class App {
             System.out.println(capCity_string);
         }
     }
-    /**
-    Get the population of people living in cities and people not living in cities
-     * in each continent
-     * @return ArrayList of Continent, the amount of people living and cities and not living in the cities
-     */
-
-    public ArrayList<Continent> getPopulationInCitiesAndNotInCitiesContinent(String continent)
-    {
-        try {
-            // Create an SQL Statement
-            Statement stmt = con.createStatement();
-
-            /**
-            * ********* Missing Tot population of continent ********
-            * */
-
-            // Create String for SQL statement
-            String strSelect = "SELECT country.Continent, country.Population, "
-                    + "SUM(city.Population) AS `People Living In Cities`," + " (country.Population - SUM(city.Population)) AS `People Not Living In cities`,\n" +
-                    "CONCAT(ROUND(SUM(city.Population)/country.Population * 100, 2),'%') AS `City Living Perc`,\n" +
-                    "CONCAT(ROUND((country.Population - SUM(city.Population))/country.Population * 100, 2),'%') AS `Not Living In Cities Perc`\n" +
-                    "FROM country JOIN city ON (country.Code = city.CountryCode)\n" +
-                    "WHERE continent= " + continent +
-                    " GROUP BY country.Name, country.Population; ";
-
-            // Execute SQL Statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-
-            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
-            ArrayList<Continent> populationInCitiesAndNotInCitiesContinent = new ArrayList<Continent>();
-            while(rset.next())
-            {
-                Continent cont = new Continent();
-                cont.setName(rset.getString("country.Continent"));
-                cont.setPopulation(rset.getInt(""));
-                cont.setCityPopulation(rset.getInt(""));
-                cont.setPercCityPopulation(rset.getString(""));
-                cont.setCountrysidePopulation(rset.getInt(""));
-                cont.setPercCountrysidePopulation(rset.getString(""));
-                populationInCitiesAndNotInCitiesContinent.add(cont);
-            }
-            return populationInCitiesAndNotInCitiesContinent;
-
-    } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Error getting a list with the people living and not living in cities in each continent");
-            return null;
-        }
-    }
-
-    /**
-     * Prints the name, population, city population, percent of city population, countryside population, percent of countryside population and their percentages stored in the supplied list
-     * @param populationListOfPeople The list of people to print
-     */
-    private void printPopulationLivingInCitiesOrNotLivingInCitiesContinent(ArrayList<Continent> populationListOfPeople)
-    {
-        // Print header for the capital cities
-        System.out.println(String.format("%-20s %-15s %-8s %-5s %-8s %-5s", "Name", "Population", "City Population", "Percent of city population", "Countryside Population", "Percent of countryside population"));
-
-        // Loop over all capital cities in the list
-        for (Continent cont : populationListOfPeople)
-        {
-            String population_string =
-                    String.format("%-20s %-15s %-8s %-5s %-8s %-5s",
-                            cont.getName(), cont.getPopulation(), cont.getCityPopulation(), cont.getPercCityPopulation(), cont.getCountrysidePopulation(), cont.getPercCountrysidePopulation());
-            System.out.println(population_string);
-        }
-    }
-
-    /**
-     Get the population of people living in cities and people not living in cities
-     * in each region
-     * @return ArrayList of Region, the amount of people living and cities and not living in the cities
-     */
-    public ArrayList<Region> getPopulationInCitiesAndNotInCitiesRegion(String region)
-    {
-        try {
-            // Create an SQL Statement
-            Statement stmt = con.createStatement();
-
-            /**
-             ****** Missing Tot Poppulation in region *******
-             * */
-
-            // Create String for SQL statement
-            String strSelect = "SELECT region.Name, country.Population, "
-                    + "SUM(city.Population) AS `People Living In Cities`," + " (country.Population - SUM(city.Population)) AS `People Not Living In cities`,\n" +
-                    "CONCAT(ROUND(SUM(city.Population)/country.Population * 100, 2),'%') AS `City Living Perc`,\n" +
-                    "CONCAT(ROUND((country.Population - SUM(city.Population))/country.Population * 100, 2),'%') AS `Not Living In Cities Perc`\n" +
-                    "FROM country JOIN city ON (country.Code = city.CountryCode)\n" +
-                    "WHERE region= " + region +
-                    " GROUP BY country.Name, country.Population; ";
-
-            // Execute SQL Statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-
-            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
-            ArrayList<Region> populationInCitiesAndNotInCitiesRegion = new ArrayList<Region>();
-            while(rset.next())
-            {
-                Region reg = new Region();
-                reg.setName(rset.getString("region.Region"));
-                reg.setPopulation(rset.getInt("country.Population"));
-                reg.setCityPopulation(rset.getInt(""));
-                reg.setPercCityPopulation(rset.getString("City Living Perc"));
-                reg.setCountrySidePopulation(rset.getInt(""));
-                reg.setPercCountrysidePopulation(rset.getString("Not Living In Cities Perc"));
-                populationInCitiesAndNotInCitiesRegion.add(reg);
-            }
-            return populationInCitiesAndNotInCitiesRegion;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Error getting a list with the people living and not living in cities in each region");
-            return null;
-        }
-    }
-
-    /**
-     * Prints the name, population, city population, percent of city population, countryside population, percent of countryside population and their percentages stored in the supplied list
-     * @param populationListOfPeople The list of people to print
-     */
-    private void printPopulationLivingInCitiesOrNotLivingInCitiesRegion(ArrayList<Region> populationListOfPeople)
-    {
-        // Print header for the capital cities
-        System.out.println(String.format("%-20s %-15s %-8s %-5s %-8s %-5s", "Name", "Population", "City Population", "Percent of city population", "Countryside Population", "Percent of countryside population"));
-
-        // Loop over all capital cities in the list
-        for (Region reg : populationListOfPeople)
-        {
-            String population_string =
-                    String.format("%-20s %-15s %-8s %-5s %-8s %-5s",
-                            reg.getName(), reg.getPopulation(), reg.getCityPopulation(), reg.getPercCityPopulation(), reg.getCountrySidePopulation(), reg.getPercCountrysidePopulation());
-            System.out.println(population_string);
-        }
-    }
-
-    /**
-     Get the population of people living in cities and people not living in cities
-     * in each country
-     * @return ArrayList of Country, the amount of people living and cities and not living in the cities
-     */
-    public ArrayList<Country> getPopulationInCitiesAndNotInCitiesCountry(String country)
-    {
-        try {
-            // Create an SQL Statement
-            Statement stmt = con.createStatement();
-
-            // Create String for SQL statement
-            String strSelect = "SELECT country.Name, country.Population, "
-                    + "SUM(city.Population) AS `People Living In Cities`," + " (country.Population - SUM(city.Population)) AS `People Not Living In cities`,\n" +
-                    "CONCAT(ROUND(SUM(city.Population)/country.Population * 100, 2),'%') AS `City Living Perc`,\n" +
-                    "CONCAT(ROUND((country.Population - SUM(city.Population))/country.Population * 100, 2),'%') AS `Not Living In Cities Perc`\n" +
-                    "FROM country JOIN city ON (country.Code = city.CountryCode)\n" +
-                    "WHERE country= " + country +
-                    " GROUP BY country.Name, country.Population; ";
-
-            // Execute SQL Statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-
-            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
-            ArrayList<Country> populationInCitiesAndNotInCitiesCountry = new ArrayList<Country>();
-            while(rset.next())
-            {
-                Country coun = new Country();
-                coun.setName(rset.getString("country.Name"));
-                coun.setPopulation(rset.getInt("People Living In Cities"));
-                coun.setCityPopulation((rset.getInt("")));
-                coun.setPercCityPopulation(rset.getString("City Living Perc"));
-                coun.setCountrysidePopulation(rset.getInt(""));
-                coun.setPercCountrysidePopulation(rset.getString("Not Living In Cities Perc"));
-                populationInCitiesAndNotInCitiesCountry.add(coun);
-            }
-            return populationInCitiesAndNotInCitiesCountry;
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Error getting a list with the people living and not living in cities in each country");
-            return null;
-        }
-    }
-    /**
-     * Prints the name, population, city population, percent of city population, countryside population, percent of countryside population and their percentages stored in the supplied list
-     * @param populationListOfPeople The list of people to print
-     */
-    private void printPopulationLivingInCitiesOrNotLivingInCitiesCoutry(ArrayList<Country> populationListOfPeople)
-    {
-        // Print header for the capital cities
-        System.out.println(String.format("%-20s %-15s %-8s %-5s %-8s %-5s", "Name", "Population", "City Population", "Percent of city population", "Countryside Population", "Percent of countryside population"));
-
-        // Loop over all capital cities in the list
-        for (Country country : populationListOfPeople)
-        {
-            String population_string =
-                    String.format("%-20s %-15s %-8s %-5s %-8s %-5s",
-                            country.getName(), country.getPopulation(), country.getCityPopulation(), country.getPercCityPopulation(), country.getCountrysidePopulation(), country.getPercCountrysidePopulation());
-            System.out.println(population_string);
-        }
-    }
 
         /**
      * Gets the number of people speaking and the world percentage of English, Chinese, Spanish, Hindi and Arabic
      * @return ArrayList of CountryLanguages of English, Chinese, Spanish, Hindi and Arabic
      */
-    private ArrayList<CountryLanguage> getFiveLanguages()
+    public ArrayList<CountryLanguage> getFiveLanguages()
     {
         try {
             // Create an SQL Statement

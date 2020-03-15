@@ -3,10 +3,15 @@ package com.napier.sem;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Authors: Davide Pollicino, Magdalena Calkova, Simona Georgieva, Simone Piazzini
+ * COURSE: Software Engineering Methods (SET08103)
+ * Last Modified: 15/03/2020
+ * AppTests is a unit testing class, that tests priting methods of the App
+ */
 
 public class AppTests {
     static App app;
@@ -39,11 +44,6 @@ public class AppTests {
         ArrayList<City> cities = new ArrayList<City>();
         cities.add(null);
         app.printCities(cities);
-    }
-
-    @Test
-    void getPeopleLinvingInCitiesorNotTest(){
-
     }
 
     //Test for printCapitalCities() if the provided list is NULL
