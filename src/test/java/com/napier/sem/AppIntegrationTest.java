@@ -24,6 +24,40 @@ public class AppIntegrationTest
         app.connect("localhost:33060");
     }
 
+    // Test for getCountriesinContinent
+    @Test
+    void getTopCountriesinContinentTest()
+    {
+        ArrayList<Country> countryList = new ArrayList<Country>();
+        countryList = app.getCountriesinContinent("Europe");
+        assertEquals(countryList.get(0).getName(), "Albania");
+        assertEquals(countryList.get(0).getContinent(), "Europe");
+        assertEquals(countryList.get(0).getPopulation(), 3401200);
+    }
+
+
+    // Test for getTopCountriesinRegion
+    @Test
+    void getTopCountriesinRegionTest()
+    {
+        ArrayList<Country> countryList = new ArrayList<Country>();
+        countryList = app.getTopCountriesinRegion("Southern Europe", 4);
+        assertEquals(countryList.get(0).getName(), "Italy");
+        assertEquals(countryList.get(0).getRegion(), "Southern Europe");
+        assertEquals(countryList.get(0).getPopulation(), 57680000);
+    }
+
+    //Test for getCountries
+    @Test
+    void getCountriesTest()
+    {
+        ArrayList<Country> countryList = new ArrayList<Country>();
+        countryList = app.getCountries();
+        assertEquals(countryList.get(0).getName(), "China");
+        assertEquals(countryList.get(0).getContinent, "Asia");
+        assertEquals(countryList.get(0).getPopulation, 1277558000);
+    }
+
     //Test for getFiveLanguages()
     @Test
     void getFiveLanguagesTest()

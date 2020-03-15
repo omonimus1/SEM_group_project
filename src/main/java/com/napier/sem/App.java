@@ -137,7 +137,8 @@ public class App {
             }
         }
     }
-    /* Get all the countries in the world retrieved from the Database organised by largest population to smallest*/
+
+    /** Get all the countries in the world retrieved from the Database organised by largest population to smallest */
     public ArrayList<Country> getCountries()
     {
         try {
@@ -175,8 +176,7 @@ public class App {
         }
     }
 
-    /* Generate report for a given number
-    * of countries
+    /** Generate report for a given numbeR of countries
     * */
     public ArrayList<Country> getTopCountries(int n)
     {
@@ -185,7 +185,7 @@ public class App {
             Statement stmt = con.createStatement();
 
             // Create String for SQL statement
-            String strSelect = "SELECT Name " +
+            String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital " +
                     "FROM country " +
                     "ORDER BY Population DESC; "
                     + "LIMIT " + n + " ;";
@@ -193,7 +193,7 @@ public class App {
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            // Extract information from the SQL table and create instances of Countries to be put in the ArrayList and returned
             ArrayList<Country> countryList = new ArrayList<Country>();
             while(rset.next())
             {
@@ -213,15 +213,13 @@ public class App {
         catch(Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get a list of all the cities by population in the world");
+            System.out.println("Failed to get a list of all the Countries by population in the world");
             return null;
         }
     }
 
-    /*
+    /**
      * Generate a report for all the countries in a given continent organised by largest to smallest
-     *
-     *
      * */
     public ArrayList<Country> getCountriesinContinent(String continent)
     {
@@ -230,7 +228,7 @@ public class App {
             Statement stmt = con.createStatement();
 
             // Create String for SQL statement
-            String strSelect = "SELECT Code, Name, Continent, Region, Population, Capital " +
+            String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital " +
                     "FROM country " +
                     "WHERE continent = " + continent  +
                     " ORDER BY Population DESC; ";
@@ -238,7 +236,7 @@ public class App {
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            // Extract information from the SQL table and create instances of Countries to be put in the ArrayList and returned
             ArrayList<Country> countryList = new ArrayList<Country>();
             while(rset.next())
             {
@@ -256,32 +254,34 @@ public class App {
         catch(Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get a list of all the cities by population in the world");
+            System.out.println("Failed to get a list of all the Countries by population in the world");
             return null;
         }
     }
 
-    /*
-     *  Generate report of top 'n' populated countries provided by the user
-     *
+    /**
+     *  Generate report of top 'n' populated countries provided by the user in a continent where 'n' is provided by the user
+     * @param continent chosen by the user
+     * @param number of top countries
+     * @return a list of countries
      * */
-    public ArrayList<Country> getTopCountriesinContinent(String continent, int n)
+    public ArrayList<Country> getTopCountriesinContinent(String continent, int number)
     {
         try {
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
             // Create String for SQL statement
-            String strSelect = "SELECT Name " +
+            String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital " +
                     "FROM country " +
                     "WHERE continent = " + continent +
                     " ORDER BY Population DESC "
-                    + " LIMIT BY " + n + " ;";
+                    + " LIMIT BY " + number + " ;";
 
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            // Extract information from the SQL table and create instances of Countries to be put in the ArrayList and returned
             ArrayList<Country> countryList = new ArrayList<Country>();
             while(rset.next())
             {
@@ -299,12 +299,16 @@ public class App {
         catch(Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get a list of all the cities by population in the world");
+            System.out.println("Failed to get a list of all the Countries by population in the world");
             return null;
         }
     }
 
-
+    /**Get all the countries in a given Region
+     *
+     * @param region
+     * @return a list of countries
+     */
     public ArrayList<Country> getCountriesinRegion(String region)
     {
         try {
@@ -320,7 +324,7 @@ public class App {
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            // Extract information from the SQL table and create instances of Countries to be put in the ArrayList and returned
             ArrayList<Country> countryList = new ArrayList<Country>();
             while(rset.next())
             {
@@ -338,28 +342,34 @@ public class App {
         catch(Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get a list of all the cities by population in the world");
+            System.out.println("Failed to get a list of all the Countries by population in the world");
             return null;
         }
     }
 
-
-    public ArrayList<Country> getTopCountriesinRegion(String region, int n)
+    /**Get all the countries in a given Region
+     *
+     * @param region
+     * @param number of
+     * @return a list of countries
+     */
+    public ArrayList<Country> getTopCountriesinRegion(String region, int number)
     {
         try {
             // Create an SQL Statement
             Statement stmt = con.createStatement();
 
             // Create String for SQL statement
-            String strSelect = "SELECT Name " +
-                    "FROM country " + region +
+            String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital " +
+                    "FROM country " +
+                    "WHERE region=" + region +
                     " ORDER BY Population DESC "
-                    + " LIMIT " + n + " ;";
+                    + " LIMIT " + number + " ;";
 
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            // Extract information from the SQL table and create instances of Countrird to be put in the ArrayList and returned
             ArrayList<Country> countryList = new ArrayList<Country>();
             while(rset.next())
             {
@@ -377,14 +387,14 @@ public class App {
         catch(Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get a list of all the cities by population in the world");
+            System.out.println("Failed to get a list of all the Countries by population in the world");
             return null;
         }
     }
 
     /**
-     * Prints a list of capital cities
-     * @paramt capCities The list of capital cities to print
+     * Prints a list of countries
+     * @paramt Countries The list of countries to print
      */
     public void printCountries(ArrayList<Country> countries)
     {
@@ -393,14 +403,16 @@ public class App {
             System.out.println("No countries");
             return;
         }
-        // Print header for the capital cities
+        // Print header for the capital countries
         System.out.println(String.format("%-5s %-50s %-20s %-50s %-8s %-30s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
 
-        // Loop over all capital cities in the list
+        // Loop over all countries in the list
         for (Country country : countries)
         {
             if(country == null)
+            {
                 continue;
+            }
             String countries_string =
                     String.format("%-5s %-50s %-20s %-50s %-8s %-30s",
                             country.getCode(), country.getName(), country.getContinent(), country.getRegion(),  country.getPopulation(), country.getCapital());
@@ -426,7 +438,7 @@ public class App {
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            // Extract information from the SQL table and create instances of Countries to be put in the ArrayList and returned
 
             while(rset.next())
             {
@@ -465,7 +477,7 @@ public class App {
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            // Extract information from the SQL table and create instances of Countries to be put in the ArrayList and returned
 
             while(rset.next())
             {
@@ -504,7 +516,7 @@ public class App {
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            // Extract information from the SQL table and create instances of Countries to be put in the ArrayList and returned
 
             while(rset.next())
             {
@@ -541,7 +553,7 @@ public class App {
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            // Extract information from the SQL table and create instances of Countries to be put in the ArrayList and returned
 
             population = (rset.getString("SUM(Population)"));
             return population;
@@ -576,7 +588,7 @@ public class App {
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            // Extract information from the SQL table and create instances of Countries to be put in the ArrayList and returned
             population = (rset.getString("SUM(Population)"));
 
             return population;
@@ -610,7 +622,7 @@ public class App {
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            // Extract information from the SQL table and create instances of Countries to be put in the ArrayList and returned
 
             while(rset.next())
             {
