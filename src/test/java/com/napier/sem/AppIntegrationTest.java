@@ -125,18 +125,6 @@ public class AppIntegrationTest
         assertEquals(list.get(0).getPopulation(), 8389200);
     }
 
-    //Test for getCitiesByPopulationInRegion("Western Europe")
-    @Test
-    void getCitiesByPopulationInRegionTest()
-    {
-        ArrayList<City> list = new ArrayList<City>();
-        list = app.getCapitalCitiesByPopulationInRegion("Western Europe");
-        assertEquals(list.get(0).getName(), "Berlin");
-        assertEquals(list.get(0).getCountry(), "Germany");
-        assertEquals(list.get(0).getDistrict(), "Berliini");
-        assertEquals(list.get(0).getPopulation(), 3386667);
-    }
-
     //Test for getCitiesByPopulationInCountry("Albania")
     @Test
     void getCitiesByPopulationInCountryTest()
@@ -183,18 +171,6 @@ public class AppIntegrationTest
         assertEquals(list.get(0).getCountry(), "India");
         assertEquals(list.get(0).getDistrict(), "Maharashtra");
         assertEquals(list.get(0).getPopulation(), 10500000);
-    }
-
-    //Test for getCitiesByPopulationInRegion("Western Europe", 5)
-    @Test
-    void getCitiesByPopulationInRegionLimitedTest()
-    {
-        ArrayList<City> list = new ArrayList<City>();
-        list = app.getCitiesByPopulationInRegion("Western Europe");
-        assertEquals(list.get(0).getName(), "Berlin");
-        assertEquals(list.get(0).getCountry(), "Germany");
-        assertEquals(list.get(0).getDistrict(), "Berliini");
-        assertEquals(list.get(0).getPopulation(), 3386667);
     }
 
     //Test for getCitiesByPopulationInCountry("Albania", 5)
