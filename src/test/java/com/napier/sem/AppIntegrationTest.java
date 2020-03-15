@@ -132,7 +132,7 @@ public class AppIntegrationTest
         ArrayList<City> list = new ArrayList<City>();
         list = app.getCapitalCitiesByPopulationInRegion("Western Europe");
         assertEquals(list.get(0).getName(), "Berlin");
-        assertEquals(list.get(0).getCountry(), "Deutschland");
+        assertEquals(list.get(0).getCountry(), "Germany");
         assertEquals(list.get(0).getDistrict(), "Berliini");
         assertEquals(list.get(0).getPopulation(), 3386667);
     }
@@ -192,7 +192,7 @@ public class AppIntegrationTest
         ArrayList<City> list = new ArrayList<City>();
         list = app.getCitiesByPopulationInRegion("Western Europe");
         assertEquals(list.get(0).getName(), "Berlin");
-        assertEquals(list.get(0).getCountry(), "Deutschland");
+        assertEquals(list.get(0).getCountry(), "Germany");
         assertEquals(list.get(0).getDistrict(), "Berliini");
         assertEquals(list.get(0).getPopulation(), 3386667);
     }
