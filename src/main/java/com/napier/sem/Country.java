@@ -3,7 +3,7 @@ package com.napier.sem;
 /**
  * Authors: Davide Pollicino, Magdalena Calkova, Simona Georgieva, Simone Piazzini
  * COURSE: Software Engineering Methods (SET08103)
- * Last Modified: 20/02/2020
+ * Last Modified: 13/03/2020
  * Country Class that stores information about an instance of a country
  * It stores getters and setters that make the variables code, name, continent, region, population and capital accessible
  */
@@ -25,7 +25,16 @@ public class Country {
     private String capital;
     private String code2;
     private String language;
+    private int cityPopulation;
+    private int countrysidePopulation;
+    private String percCityPopulation;
+    private String percCountrysidePopulation;
 
+    Country(){}
+
+    Country(String name){
+
+    }
     //Get and Set method for code
     public String getCode()
     {
@@ -86,4 +95,23 @@ public class Country {
         this.capital=new_cap;
     }
 
+    // Get and Set method for city population
+    public int getCityPopulation()
+    {
+        return cityPopulation;
+    }
+    public void setCityPopulation(int new_cityPop)
+    {
+        this.cityPopulation=new_cityPop;
+    }
+
+    // Get and Set method for countryside Population
+    public int getCountrysidePopulation() { return countrysidePopulation; }
+    public void setCountrysidePopulation(int new_countPop) { this.countrysidePopulation=new_countPop; }
+
+    public String getPercCityPopulation() { return percCityPopulation; }
+    public void setPercCityPopulation(String new_percCityPopulation) { this.percCityPopulation=new_percCityPopulation; }
+
+    public String getPercCountrysidePopulation() { return percCountrysidePopulation; }
+    public void setPercCountrysidePopulation(String new_percCountrysidePopulation) { this.percCountrysidePopulation=new_percCountrysidePopulation; }
 }
