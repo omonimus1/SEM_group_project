@@ -101,4 +101,124 @@ public class AppIntegrationTest
         assertEquals(list.get(0).getPopulation(), 4336000);
     }
 
+    //Test for getWorldCitiesByPopulation()
+    @Test
+    void getWorldCitiesByPopulationTest()
+    {
+        ArrayList<City> list = new ArrayList<City>();
+        list = app.getWorldCitiesByPopulation();
+        assertEquals(list.get(0).getName(), "Barcelona");
+        assertEquals(list.get(0).getCountry(), "Spain");
+        assertEquals(list.get(0).getDistrict(), "Katalonia");
+        assertEquals(list.get(0).getPopulation(), 1503451);
+    }
+
+    //Test for getCitiesByPopulationInContinent("Europe")
+    @Test
+    void getCitiesByPopulationInContinentTest()
+    {
+        ArrayList<City> list = new ArrayList<City>();
+        list = app.getCitiesByPopulationInContinent("Europe");
+        assertEquals(list.get(0).getName(), "Barcelona");
+        assertEquals(list.get(0).getCountry(), "Spain");
+        assertEquals(list.get(0).getDistrict(), "Katalonia");
+        assertEquals(list.get(0).getPopulation(), 1503451);
+    }
+
+    //Test for getCitiesByPopulationInRegion("Western Europe")
+    @Test
+    void getCitiesByPopulationInRegionTest()
+    {
+        ArrayList<City> list = new ArrayList<City>();
+        list = app.getCapitalCitiesByPopulationInRegion("Western Europe");
+        assertEquals(list.get(0).getName(), "Brugge");
+        assertEquals(list.get(0).getCountry(), "Belgium");
+        assertEquals(list.get(0).getDistrict(), "West Flanderi");
+        assertEquals(list.get(0).getPopulation(), 116246);
+    }
+
+    //Test for getCitiesByPopulationInCountry("Albania")
+    @Test
+    void getCitiesByPopulationInCountryTest()
+    {
+        ArrayList<City> list = new ArrayList<City>();
+        list = app.getCitiesByPopulationInCountry("Albania");
+        assertEquals(list.get(0).getName(), "Tirana");
+        assertEquals(list.get(0).getCountry(), "Albania");
+        assertEquals(list.get(0).getDistrict(), "Tirana");
+        assertEquals(list.get(0).getPopulation(), 270000);
+    }
+
+    //Test for getCitiesByPopulationInDistrict("Noord-Brabant")
+    @Test
+    void getCitiesByPopulationInDistrictTest()
+    {
+        ArrayList<City> list = new ArrayList<City>();
+        list = app.getCitiesByPopulationInDistrict("Noord-Brabant");
+        assertEquals(list.get(0).getName(), "Tilburg");
+        assertEquals(list.get(0).getCountry(), "Netherlands");
+        assertEquals(list.get(0).getDistrict(), "Noord-Brabant");
+        assertEquals(list.get(0).getPopulation(), 193238);
+    }
+
+    //Test for getTopCitiesByPopulation(5)
+    @Test
+    void getTopCitiesByPopulationTest()
+    {
+        ArrayList<City> list = new ArrayList<City>();
+        list = app.getTopCitiesByPopulation(5);
+        assertEquals(list.get(0).getName(), "Amsterdam");
+        assertEquals(list.get(0).getCountry(), "Netherlands");
+        assertEquals(list.get(0).getDistrict(), "Noord-Holland");
+        assertEquals(list.get(0).getPopulation(), 731200);
+    }
+
+    //Test for getCitiesByPopulationInContinent("Asia", 5)
+    @Test
+    void getCitiesByPopulationInContinentLimitedTest()
+    {
+        ArrayList<City> list = new ArrayList<City>();
+        list = app.getCitiesByPopulationInContinent("Asia",5);
+        assertEquals(list.get(0).getName(), "Abu Dhabi");
+        assertEquals(list.get(0).getCountry(), "United Arab Emirates");
+        assertEquals(list.get(0).getDistrict(), "Abu Dhabi");
+        assertEquals(list.get(0).getPopulation(), 398695);
+    }
+
+    //Test for getCitiesByPopulationInRegion("Western Europe", 5)
+    @Test
+    void getCitiesByPopulationInRegionLimitedTest()
+    {
+        ArrayList<City> list = new ArrayList<City>();
+        list = app.getCitiesByPopulationInRegion("Western Europe");
+        assertEquals(list.get(0).getName(), "Brugge");
+        assertEquals(list.get(0).getCountry(), "Belgium");
+        assertEquals(list.get(0).getDistrict(), "West Flanderi");
+        assertEquals(list.get(0).getPopulation(), 116246);
+    }
+
+    //Test for getCitiesByPopulationInCountry("Albania", 5)
+    @Test
+    void getCitiesByPopulationInCountryLimitedTest()
+    {
+        ArrayList<City> list = new ArrayList<City>();
+        list = app.getCitiesByPopulationInCountry("Albania", 5);
+        assertEquals(list.get(0).getName(), "Tirana");
+        assertEquals(list.get(0).getCountry(), "Albania");
+        assertEquals(list.get(0).getDistrict(), "Tirana");
+        assertEquals(list.get(0).getPopulation(), 270000);
+    }
+
+    //Test for getCitiesByPopulationInDistrict("Noord-Brabant", 5)
+    @Test
+    void getCitiesByPopulationInDistrictLimitedTest()
+    {
+        ArrayList<City> list = new ArrayList<City>();
+        list = app.getCitiesByPopulationInDistrict("Noord-Brabant", 5);
+        assertEquals(list.get(0).getName(), "Tilburg");
+        assertEquals(list.get(0).getCountry(), "Netherlands");
+        assertEquals(list.get(0).getDistrict(), "Noord-Brabant");
+        assertEquals(list.get(0).getPopulation(), 193238);
+    }
+
 }
