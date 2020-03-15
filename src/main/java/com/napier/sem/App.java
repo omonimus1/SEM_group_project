@@ -207,7 +207,7 @@ public class App {
                 country.setContinent(rset.getString("country.Continent"));
                 country.setRegion(rset.getString("country.Region"));
                 country.setPopulation(rset.getInt("country.Population"));
-                country.setCapital(rset.getString("country.Capital"));
+                country.setCapital(rset.getInt("country.Capital"));
                 countryList.add(country);
             }
             return countryList;
@@ -250,7 +250,7 @@ public class App {
                 country.setContinent(rset.getString("country.Continent"));
                 country.setRegion(rset.getString("country.Region"));
                 country.setPopulation(rset.getInt("country.Population"));
-                country.setCapital(rset.getString("country.Capital"));
+                country.setCapital(rset.getInt("country.Capital"));
 
                 countryList.add(country);
             }
@@ -294,7 +294,7 @@ public class App {
                 country.setContinent(rset.getString("country.Continent"));
                 country.setRegion(rset.getString("country.Region"));
                 country.setPopulation(rset.getInt("country.Population"));
-                country.setCapital(rset.getString("country.Capital"));
+                country.setCapital(rset.getInt("country.Capital"));
                 countryList.add(country);
             }
             return countryList;
@@ -339,7 +339,7 @@ public class App {
                 country.setContinent(rset.getString("country.Continent"));
                 country.setRegion(rset.getString("country.Region"));
                 country.setPopulation(rset.getInt("country.Population"));
-                country.setCapital(rset.getString("country.Capital"));
+                country.setCapital(rset.getInt("country.Capital"));
                 countryList.add(country);
             }
             return countryList;
@@ -382,7 +382,7 @@ public class App {
                 country.setContinent(rset.getString("country.Continent"));
                 country.setRegion(rset.getString("country.Region"));
                 country.setPopulation(rset.getInt("country.Population"));
-                country.setCapital(rset.getString("country.Capital"));
+                country.setCapital(rset.getInt("country.Capital"));
                 countryList.add(country);
             }
             return countryList;
@@ -427,7 +427,7 @@ public class App {
                 country.setContinent(rset.getString("country.Continent"));
                 country.setRegion(rset.getString("country.Region"));
                 country.setPopulation(rset.getInt("country.Population"));
-                country.setCapital(rset.getString("country.Capital"));
+                country.setCapital(rset.getInt("country.Capital"));
                 countryList.add(country);
             }
             return countryList;
