@@ -29,7 +29,7 @@ public class AppTests {
     }
 
     //Country list is empy
-    @test
+    @Test
     void printCountriesTestEmpty()
     {
         ArrayList<Country> countries = new ArrayList<Country>();

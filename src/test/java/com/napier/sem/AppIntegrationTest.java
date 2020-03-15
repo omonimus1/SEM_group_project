@@ -54,8 +54,8 @@ public class AppIntegrationTest
         ArrayList<Country> countryList = new ArrayList<Country>();
         countryList = app.getCountries();
         assertEquals(countryList.get(0).getName(), "China");
-        assertEquals(countryList.get(0).getContinent, "Asia");
-        assertEquals(countryList.get(0).getPopulation, 1277558000);
+        assertEquals(countryList.get(0).getContinent(), "Asia");
+        assertEquals(countryList.get(0).getPopulation(), 1277558000);
     }
 
     //Test for getFiveLanguages()
