@@ -27,6 +27,50 @@ public class App {
             a.connect(args[0]);
         }
 
+        //Print list of countries in the world by largest to smallest
+        System.out.println("All the countries in the world");
+        ArrayListy<Coutry> countryList = new ArrayList<Country>();
+        countryList = a.getCountries();
+        a.printCountries(countryList);
+        System.out.println("\n");
+
+
+        //Print list of countries in the world by largest to smallest for each continent
+        System.out.println("All the countries in the world");
+        ArrayListy<Coutry> countryList = new ArrayList<Country>();
+        countryList = a.getCountriesinContinet("Europe");
+        a.printCountries(countryList);
+        System.out.println("\n");
+
+        //Print list of countries in the world by largest to smallest for each region
+        System.out.println("All the countries in the world");
+        ArrayListy<Coutry> countryList = new ArrayList<Country>();
+        countryList = a.getCountriesinContinet("Southern Europe");
+        a.printCountries(countryList);
+        System.out.println("\n");
+
+        //Limit cap of countries in the world by largest to smallest
+        System.out.println("All the countries in the world");
+        ArrayListy<Coutry> countryList = new ArrayList<Country>();
+        countryList = a.getTopCountries(5);
+        a.printCountries(countryList);
+        System.out.println("\n");
+
+        //Limit cap of countries in the world by largest to smallest in each Continent
+        System.out.println("All the countries in the world");
+        ArrayListy<Coutry> countryList = new ArrayList<Country>();
+        countryList = a.getTopCountriesinContinent("Europe", 5);
+        a.printCountries(countryList);
+        System.out.println("\n");
+
+
+        //Limit cap of countries in the world by largest to smallest in each Region
+        System.out.println("All the countries in the world");
+        ArrayListy<Coutry> countryList = new ArrayList<Country>();
+        countryList = a.getTopCountriesinContinent("Southern Europe", 5);
+        a.printCountries(countryList);
+        System.out.println("\n");
+
         //Five countries
         System.out.println("Five languages list...");
         ArrayList<CountryLanguage> langList = new ArrayList<CountryLanguage>();
@@ -153,7 +197,7 @@ public class App {
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            // Extract information from the SQL table and create instances of Cities to be put in the ArrayList and returned
+            // Extract information from the SQL table and create instances of Cuntries to be put in the ArrayList and returned
             ArrayList<Country> countryList = new ArrayList<Country>();
             while(rset.next())
             {
@@ -171,14 +215,16 @@ public class App {
         catch(Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get a list of all the cities by population in the world");
+            System.out.println("Failed to get a list of all the countries by population in the world");
             return null;
         }
     }
 
-    /** Generate report for a given numbeR of countries
+    /** Generate report for a given number of countries provided by the user
+     * @param number provided by the user
+     * @return a list of countries
     * */
-    public ArrayList<Country> getTopCountries(int n)
+    public ArrayList<Country> getTopCountries(int number)
     {
         try {
             // Create an SQL Statement
@@ -220,6 +266,8 @@ public class App {
 
     /**
      * Generate a report for all the countries in a given continent organised by largest to smallest
+     * @oaram continent The string name of the continent
+     * @return a list of countries
      * */
     public ArrayList<Country> getCountriesinContinent(String continent)
     {
@@ -230,8 +278,8 @@ public class App {
             // Create String for SQL statement
             String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital " +
                     "FROM country " +
-                    "WHERE continent = " + continent  +
-                    " ORDER BY Population DESC; ";
+                    "WHERE continent = '" + continent  +
+                    "' ORDER BY Population DESC; ";
 
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -274,8 +322,8 @@ public class App {
             // Create String for SQL statement
             String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital " +
                     "FROM country " +
-                    "WHERE continent = " + continent +
-                    " ORDER BY Population DESC "
+                    "WHERE continent = '" + continent +
+                    "' ORDER BY Population DESC "
                     + " LIMIT BY " + number + " ;";
 
             // Execute SQL Statement
@@ -318,8 +366,8 @@ public class App {
             // Create String for SQL statement
             String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital " +
                     "FROM country " +
-                    "WHERE region =" + region +
-                    " ORDER BY Population DESC; ";
+                    "WHERE region = '" + region +
+                    "' ORDER BY Population DESC; ";
 
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -347,10 +395,10 @@ public class App {
         }
     }
 
-    /**Get all the countries in a given Region
+    /**Get the top n countries in a Region provided by the user
      *
-     * @param region
-     * @param number of
+     * @param region The string name for Region
+     * @param number provided by the user
      * @return a list of countries
      */
     public ArrayList<Country> getTopCountriesinRegion(String region, int number)
@@ -362,9 +410,9 @@ public class App {
             // Create String for SQL statement
             String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital " +
                     "FROM country " +
-                    "WHERE region=" + region +
+                    "WHERE region = '" + region +
                     " ORDER BY Population DESC "
-                    + " LIMIT " + number + " ;";
+                    + "' LIMIT " + number + " ;";
 
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
