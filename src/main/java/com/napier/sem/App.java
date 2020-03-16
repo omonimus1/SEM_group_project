@@ -27,50 +27,6 @@ public class App {
             a.connect(args[0]);
         }
 
-        //Print list of countries in the world by largest to smallest
-        System.out.println("All the countries in the world");
-        ArrayListy<Coutry> countryList = new ArrayList<Country>();
-        countryList = a.getCountries();
-        a.printCountries(countryList);
-        System.out.println("\n");
-
-
-        //Print list of countries in the world by largest to smallest for each continent
-        System.out.println("All the countries in the world");
-        ArrayListy<Coutry> countryList = new ArrayList<Country>();
-        countryList = a.getCountriesinContinet("Europe");
-        a.printCountries(countryList);
-        System.out.println("\n");
-
-        //Print list of countries in the world by largest to smallest for each region
-        System.out.println("All the countries in the world");
-        ArrayListy<Coutry> countryList = new ArrayList<Country>();
-        countryList = a.getCountriesinContinet("Southern Europe");
-        a.printCountries(countryList);
-        System.out.println("\n");
-
-        //Limit cap of countries in the world by largest to smallest
-        System.out.println("All the countries in the world");
-        ArrayListy<Coutry> countryList = new ArrayList<Country>();
-        countryList = a.getTopCountries(5);
-        a.printCountries(countryList);
-        System.out.println("\n");
-
-        //Limit cap of countries in the world by largest to smallest in each Continent
-        System.out.println("All the countries in the world");
-        ArrayListy<Coutry> countryList = new ArrayList<Country>();
-        countryList = a.getTopCountriesinContinent("Europe", 5);
-        a.printCountries(countryList);
-        System.out.println("\n");
-
-
-        //Limit cap of countries in the world by largest to smallest in each Region
-        System.out.println("All the countries in the world");
-        ArrayListy<Coutry> countryList = new ArrayList<Country>();
-        countryList = a.getTopCountriesinContinent("Southern Europe", 5);
-        a.printCountries(countryList);
-        System.out.println("\n");
-
         //Five countries
         System.out.println("Five languages list...");
         ArrayList<CountryLanguage> langList = new ArrayList<CountryLanguage>();
@@ -182,7 +138,9 @@ public class App {
         }
     }
 
-    /** Get all the countries in the world retrieved from the Database organised by largest population to smallest */
+    /** Generate report of all countries ordered by population fro mthe largest to the smallest
+     * @return a list of countries
+     * */
     public ArrayList<Country> getCountries()
     {
         try {
@@ -234,7 +192,7 @@ public class App {
             String strSelect = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital " +
                     "FROM country " +
                     "ORDER BY Population DESC; "
-                    + "LIMIT " + n + " ;";
+                    + "LIMIT " + number + " ;";
 
             // Execute SQL Statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -266,7 +224,7 @@ public class App {
 
     /**
      * Generate a report for all the countries in a given continent organised by largest to smallest
-     * @oaram continent The string name of the continent
+     * @param continent The string name of the continent
      * @return a list of countries
      * */
     public ArrayList<Country> getCountriesinContinent(String continent)
@@ -353,7 +311,6 @@ public class App {
     }
 
     /**Get all the countries in a given Region
-     *
      * @param region
      * @return a list of countries
      */
