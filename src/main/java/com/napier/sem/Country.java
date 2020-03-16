@@ -22,7 +22,7 @@ public class Country {
     private String localName;
     private String governmentForm;
     private String headOfState;
-    private String capital;
+    private int capital;
     private String code2;
     private String language;
     private int cityPopulation;
@@ -86,11 +86,11 @@ public class Country {
     }
 
     //Get and Set method for capital
-    public String getCapital()
+    public int getCapital()
     {
         return capital;
     }
-    public void setCapital(String new_cap)
+    public void setCapital(int new_cap)
     {
         this.capital=new_cap;
     }

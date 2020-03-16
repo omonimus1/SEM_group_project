@@ -22,6 +22,47 @@ public class AppTests {
         app = new App();
     }
 
+    @Test
+    void printCountriesTestNull()
+    {
+        app.printCountries(null);
+    }
+
+    //Country list is empy
+    @Test
+    void printCountriesTestEmpty()
+    {
+        ArrayList<Country> countries = new ArrayList<Country>();
+        app.printCountries(countries);
+
+    }
+
+    // Country contains null
+    @Test
+    void printCountriesTestContainsNull()
+    {
+        ArrayList<Country> countries = new ArrayList<Country>();
+        countries.add(null);
+        app.printCountries(countries);
+    }
+
+
+
+    // Test for printing a Country if the provided list contains a correct country
+    @Test
+    void printCountriesTest()
+    {
+        ArrayList<Country> countries = new ArrayList<Country>();
+        Country country = new Country();
+        country.setCode("ABW");
+        country.setName("Aruba");
+        country.setContinent("North America");
+        country.setRegion("Caribbean");
+        country.setPopulation(103000);
+        country.setCapital(129);
+        countries.add(country);
+        app.printCountries(countries);
+    }
 
     @Test
     void printCitiesTestNull()
